@@ -1,6 +1,6 @@
 <template>
     <div id="card" :user='info.index' class="cardbox">
-        <div class="icon-container" :id="boxindex" :style="'backgroundImage:url(' + info.iconsrc + ')'">
+        <div class="icon-container" :id="boxindex" :style="'backgroundImage:url(' + info.iconsrc + ')'" @click="control">
             <audio ref="audio" 
              :src="info.audiosrc" 
              preload="none"
@@ -87,5 +87,8 @@ display: block;
     width: 20vw;
     float: right;
     height: 20vw;
+}
+.intro{
+        text-align: left;
 }
 </style>
