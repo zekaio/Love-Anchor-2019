@@ -1,11 +1,12 @@
 <template>
-  <div id="votepage">
+  <div id="votepage" >
     <div id="cardcontain">
-    <card v-for="(value,key,index) in test" :info="value" :key="index">
+    <card v-for="(value,key,index) in test" :info="value" :key="index"   @goback="choose" :ifCheck="ifCheck" >
+      <!-- :btnsrc="btnsrc"  -->
     </card>
     </div>
     <div id="final-btn">
-      <input type="submit" class="queren" id="final" value=" ">
+      <input type="submit" class="queren" id="final" value=" " >
     </div>
     <div id="attention">网络出错啦，请稍候再试！</div>
         <div id="bottom2"></div>
@@ -20,24 +21,45 @@ export default {
   data() {
     return {
       // getinfo:[]
-      test:test
+      test:test,
+      index:0,
+      ifCheck:0
+      // btnsrc:"../assets/img/void.png",
     }
   },
   components:{
     card
   },
   mounted(){
-  //   this.axios(show)
-  //   .then(res=>{
-  //     this.getinfo=res.data.user;
-  //     if(this.getinfo.length==0){
-  //       //禁用确认按钮  报错
-  //     }
-  //   })
-  // for(var i=0;i<=test.length;i++){
-  //   this.getinfo[i]=test[i];
-  // }
-  }
+          sessionStorage.setItem('choose',0);
+
+  },
+  computed: {
+
+      },
+  methods: {
+    
+    choose(value){
+      // var idx=sessionStorage.getItem('choose');
+    //  window.console.log(idx);
+     window.console.log(value);
+     this.ifCheck=value;
+    //  this.  = value 
+    //  this.
+    //  var idx=0;
+    //  for(var i=0;i<=val.path.length;i++){
+    // if(val.path[i]=="votepage"){
+    //    idx=i-2;
+    //    i=5;
+    //  }
+    //  }
+    //       window.console.log(val.path[idx]);
+    //  this.index=val.path[idx].id.replace('card','')
+    //  alert("choose");
+          //  var btnname="btn"+value;
+      // this.$refs.btnname.style.backgroundImage="../assets/img/selected.png"
+    }
+  },
 }
 
 </script>
@@ -46,10 +68,12 @@ export default {
     height: 100vw;
     padding-top: 20vw;
     overflow-y: scroll;
-    margin-bottom: 20vw;
-
+    margin-bottom: 5vw;
+    padding-bottom: 5vw;
+        padding-left: 2%;
+    padding-right: 2%;
 }
-#cardcontain::-webkit-scrollbar {
+#cardcontain::-webkit-scrollbar,#attention::-webkit-scrollbar,p.intro::-webkit-scrollbar {
   display: none;
 }
 #final{
@@ -90,4 +114,5 @@ export default {
     bottom: 0;
 
 }
+
 </style>
