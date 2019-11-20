@@ -1,29 +1,29 @@
 # anchor-voting
 
-## Project setup
-```
-npm install
-```
+#### get请求时间和投票次数
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+status判断是否开始
 
-### Compiles and minifies for production
-```
-npm run build
-```
+返回errcode判断是否有投票次数
 
-### Run your tests
-```
-npm run test
-```
+#### get请求列表  
 
-### Lints and fixes files
-```
-npm run lint
-```
+| [     |                    |
+| ----- | ------------------ |
+|       | {                  |
+|       | "index":Number,    |
+|       | "name":String,     |
+|       | "num":Number,      |
+|       | "text":String,     |
+|       | "iconsrc":String,  |
+|       | "audiosrc":String, |
+|       | }                  |
+| **]** |                    |
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+#### post 请求
+
+###### 发送对应index投票 
+
+errcode:0  errmsg:投票成功
+
+errcode:1  errmsg:网络出错
