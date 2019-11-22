@@ -1,24 +1,23 @@
 <template>
   <div :id="'card'+info.index" class="cardbox" @click="change">
     <h1 class="name" :id="'user'+info.index">{{info.index}}</h1>
-
     <div
       class="icon-container"
       :id="'box'+info.index"
       :style="'backgroundImage:url(' + info.iconsrc + ')'"
-      @click="control"
+      
     >
       <audio
         ref="audio"
         :src="info.audiosrc"
-        preload="none"
-        autoplay="false"
+        
         controlslist="nodownload"
-        oncontextmenu="return false"
       ></audio>
     </div>
     <div class="info">
       <h2 class="name">{{info.name}}</h2>
+          <input type="submit" :class="audiobtn+realplay"  ref="play" id="play" @click="control" value="" :ifChecked="ifChecked">
+
       <div class="piao">{{info.num}}票</div>
             <!-- <div class="button_active" v-show="btnclass==false"  :id="'btn'+info.index" :ref="'btn'+info.index"  ></div> -->
       <div :class="btnname"  :id="'btn'+info.index" :ref="'btn'+info.index"  ></div>
@@ -39,28 +38,22 @@ export default {
     iconsrc: String,
     audiosrc: String,
     ifCheck:Number,
-
+   ifChecked:Boolean
   },
   data() {
     return {
         boxidx:0,
         show:true,
         // btnname:"button"
+         audiobtn:"playbtn",
+         Player:0
     };
   },
   computed: {
     boxindex: function() {
       return "box" + this.index;
     },
-    // btnclass: function () {
-    //   // var now=sessionStorage.getItem('choose');
-    //   // window.console.log(now);
-    //   if(this.info.index==this.ifCheck){
-    //     return false
-    //   }else{
-    //     return true
-    //   }
-    // }
+
     btnname: function () {
       // var now=sessionStorage.getItem('choose');
       // window.console.log(1);
@@ -69,17 +62,18 @@ export default {
       }else{
         return "button"
       }
-    }
-    // ifSelected:function () {
-    //   var now=sessionStorage.getItem('choose');
-    //   if(this.index==Number(now)){
-    //     // this.btnsrc="../assets/img/slected.png";
-    //     return  this.ifSelected=true;
-    //   }else{
-    //     // this.btnsrc="../assets/img/void.png";
-    //     return  this.ifSelected=false;
-    //   }
-    // },
+    },
+     realplay:function () {
+       if(this.Player!=0){
+        if(this.ifCheck!=this.info.index){
+         return "stop";
+         }
+         return "";
+       }else{
+         return "stop"
+       }
+     },
+
   },
   mounted() {
     this.$refs.audio.src = this.info.audiosrc;
@@ -89,14 +83,23 @@ export default {
       sessionStorage.setItem('choose',this.info.index);
       // this.$parent.$emit('goback',this.info.index);
     this.$emit('goback',this.info.index);
-    // this.ifCheck=this.info.index;
-    // this.btnname="button_active"
-      // alert('change:'+this.info.index);
-    //   var btnname="btn"+this.info.index;
-    //   this.$refs.btnname
     },
     control(){
-
+      this.Player=this.ifCheck;
+      switch(this.audiobtn){
+      case "playbtn":
+      this.audiobtn="playbtn_active";
+      break;
+      case "playbtn_active":
+      this.audiobtn="playbtn";
+      break;
+      }
+      //   if(this.info.index==this.ifCheck){
+      //   this.audiobtn="playbtn_active";
+      //   return;
+      // }else{
+      //   this.audiobtn="playbtn"
+      // }
     }
   },
 };
@@ -169,6 +172,37 @@ background-image: url("../assets/img/selected.png");
   background-size: 15px;
     background-repeat: no-repeat;
     background-position: center;
+}
+.playbtn,.playbtnstop,.playbtn_activestop{
+  -webkit-appearance: none;
+    border: none;
+    background: none;
+    background-size: contain;
+    background-image: url("../assets/img/play.png");
+    background-repeat: no-repeat;
+     background-position: center;
+    width: 5vw;
+    height: 6vw;
+    float: left;
+        margin-left: 2vw;
+    margin-top: 1vw;
+    outline: none;
+}
+.playbtn_active{
+  -webkit-appearance: none;
+    border: none;
+    background: none;
+    background-size: contain;
+    background-image: url("../assets/img/stop.png");
+    background-repeat: no-repeat;
+     background-position: center;
+    width: 5vw;
+    height: 6vw;
+    float: left;
+        margin-left: 2vw;
+    margin-top: 1vw;
+        outline: none;
+
 }
 .info {
   margin-left: 40%;
