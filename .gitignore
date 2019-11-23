@@ -19,3 +19,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+#backend
+/backend/config.py
+/backend/__pycache__/
