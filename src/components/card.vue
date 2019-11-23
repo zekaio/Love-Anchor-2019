@@ -5,22 +5,24 @@
       class="icon-container"
       :id="'box'+info.index"
       :style="'backgroundImage:url(' + info.iconsrc + ')'"
-      
     >
-      <audio
-        ref="audio"
-        :src="info.audiosrc"
-        
-        controlslist="nodownload"
-      ></audio>
+      <audio :id="'audio'+info.index" :src="info.audiosrc" controlslist="nodownload"></audio>
     </div>
     <div class="info">
       <h2 class="name">{{info.name}}</h2>
-          <input type="submit" :class="audiobtn+realplay"  ref="play" id="play" @click="control" value="" :ifChecked="ifChecked">
+      <input
+        type="submit"
+        :class="audiobtn"
+        ref="play"
+        id="play"
+        @click="control"
+        value
+        :ifChecked="ifChecked"
+      /><!---+realplay--!-->
 
       <div class="piao">{{info.num}}票</div>
-            <!-- <div class="button_active" v-show="btnclass==false"  :id="'btn'+info.index" :ref="'btn'+info.index"  ></div> -->
-      <div :class="btnname"  :id="'btn'+info.index" :ref="'btn'+info.index"  ></div>
+      <!-- <div class="button_active" v-show="btnclass==false"  :id="'btn'+info.index" :ref="'btn'+info.index"  ></div> -->
+      <div :class="btnname" :id="'btn'+info.index" :ref="'btn'+info.index"></div>
       <!-- :style="'backgroundImage:url(' + btnsrc + ')'" v-show="btnclass==true" -->
       <p class="intro">{{info.text}}</p>
     </div>
@@ -37,16 +39,18 @@ export default {
     text: String,
     iconsrc: String,
     audiosrc: String,
-    ifCheck:Number,
-   ifChecked:Boolean
+    ifCheck: Number,
+    ifChecked: Boolean,
+    Player:  Number,
   },
   data() {
     return {
-        boxidx:0,
-        show:true,
-        // btnname:"button"
-         audiobtn:"playbtn",
-         Player:0
+      boxidx: 0,
+      show: true,
+      // btnname:"button"
+      //  audiobtn:"playbtn",
+
+      ifPlay: false
     };
   },
   computed: {
@@ -54,45 +58,66 @@ export default {
       return "box" + this.index;
     },
 
-    btnname: function () {
+    btnname: function() {
       // var now=sessionStorage.getItem('choose');
       // window.console.log(1);
-      if(this.info.index==this.ifCheck){
-        return "button_active"
-      }else{
-        return "button"
+      if (this.info.index == this.ifCheck) {
+        return "button_active";
+      } else {
+        return "button";
       }
     },
-     realplay:function () {
-       if(this.Player!=0){
-        if(this.ifCheck!=this.info.index){
-         return "stop";
-         }
-         return "";
-       }else{
-         return "stop"
-       }
-     },
-
+    // realplay: function() {
+    //   if (this.Player != 0) {
+    //     if (this.ifCheck != this.info.index) {
+    //       return "stop";
+    //     }
+    //     return "";
+    //   } else {
+    //     return "stop";
+    //   }
+    // },
+    audiobtn: function() {
+      if (this.ifPlay==true) {
+        if(this.Player!=this.info.index){
+          return "playbtn";
+        }
+        return "playbtn_active";
+      } else {
+        return "playbtn";
+      }
+    }
   },
   mounted() {
-    this.$refs.audio.src = this.info.audiosrc;
+    // this.$refs.audio.src = this.info.audiosrc;
   },
-    methods: {
-    change(){
-      sessionStorage.setItem('choose',this.info.index);
+  methods: {
+    change() {
+      sessionStorage.setItem("choose", this.info.index);
       // this.$parent.$emit('goback',this.info.index);
-    this.$emit('goback',this.info.index);
+      this.$emit("goback", this.info.index);
+            window.console.log(this.Player);
+
     },
-    control(){
-      this.Player=this.ifCheck;
-      switch(this.audiobtn){
-      case "playbtn":
-      this.audiobtn="playbtn_active";
-      break;
-      case "playbtn_active":
-      this.audiobtn="playbtn";
-      break;
+    control() {
+      window.console.log(this.Player);
+      if((this.Player!=this.info.index)&&(this.Player!=0)){
+       document.querySelector("#audio" + this.Player).pause();
+      }else if(this.Player==0||(this.Player==this.info.index)){
+      var audio = document.querySelector("#audio" + this.info.index);
+      switch (this.ifPlay) {
+        case false:
+          // this.audiobtn="playbtn_active";
+          audio.play();
+          this.ifPlay = true;
+
+          break;
+        case true:
+          // this.audiobtn="playbtn";
+          audio.pause();
+          audio.currentTime = 0;
+          this.ifPlay = false;
+          break;
       }
       //   if(this.info.index==this.ifCheck){
       //   this.audiobtn="playbtn_active";
@@ -100,8 +125,8 @@ export default {
       // }else{
       //   this.audiobtn="playbtn"
       // }
-    }
-  },
+    }}
+  }
 };
 </script>
 <style>
@@ -143,11 +168,11 @@ export default {
   font-size: 3vw;
   margin: 0;
   padding: 0;
-    font-size: 4vw;
-    /* margin-left: 10px; */
-    width: 15vw;
-    height: 12vw;
-    margin-left: -7px;
+  font-size: 4vw;
+  /* margin-left: 10px; */
+  width: 15vw;
+  height: 12vw;
+  margin-left: -7px;
 }
 .button {
   display: block;
@@ -155,70 +180,70 @@ export default {
   width: 20vw;
   float: right;
   height: 20vw;
-    margin-top: -9vw;
-background-image: url("../assets/img/void.png");
+  margin-top: -9vw;
+  background-image: url("../assets/img/void.png");
   background-size: 15px;
-    background-repeat: no-repeat;
-    background-position: center;
+  background-repeat: no-repeat;
+  background-position: center;
 }
-.button_active{
+.button_active {
   display: block;
   margin: 0;
   width: 20vw;
   float: right;
   height: 20vw;
-    margin-top: -9vw;
-background-image: url("../assets/img/selected.png");
+  margin-top: -9vw;
+  background-image: url("../assets/img/selected.png");
   background-size: 15px;
-    background-repeat: no-repeat;
-    background-position: center;
+  background-repeat: no-repeat;
+  background-position: center;
 }
-.playbtn,.playbtnstop,.playbtn_activestop{
+.playbtn,
+.playbtnstop,
+.playbtn_activestop {
   -webkit-appearance: none;
-    border: none;
-    background: none;
-    background-size: contain;
-    background-image: url("../assets/img/play.png");
-    background-repeat: no-repeat;
-     background-position: center;
-    width: 5vw;
-    height: 6vw;
-    float: left;
-        margin-left: 2vw;
-    margin-top: 1vw;
-    outline: none;
+  border: none;
+  background: none;
+  background-size: contain;
+  background-image: url("../assets/img/play.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 5vw;
+  height: 6vw;
+  float: left;
+  margin-left: 2vw;
+  margin-top: 1vw;
+  outline: none;
 }
-.playbtn_active{
+.playbtn_active {
   -webkit-appearance: none;
-    border: none;
-    background: none;
-    background-size: contain;
-    background-image: url("../assets/img/stop.png");
-    background-repeat: no-repeat;
-     background-position: center;
-    width: 5vw;
-    height: 6vw;
-    float: left;
-        margin-left: 2vw;
-    margin-top: 1vw;
-        outline: none;
-
+  border: none;
+  background: none;
+  background-size: contain;
+  background-image: url("../assets/img/stop.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 5vw;
+  height: 6vw;
+  float: left;
+  margin-left: 2vw;
+  margin-top: 1vw;
+  outline: none;
 }
 .info {
   margin-left: 40%;
 }
 .intro {
   text-align: left;
-      white-space: normal;
-    /* width: 36vw; */
-    height:10vw;
-    margin-top: 2vw;
-    overflow: scroll;
-    margin-bottom: 2vw;
-      font-family: "Microsoft YaHei";
+  white-space: normal;
+  /* width: 36vw; */
+  height: 10vw;
+  margin-top: 2vw;
+  overflow: scroll;
+  margin-bottom: 2vw;
+  font-family: "Microsoft YaHei";
   color: rgb(60, 13, 4);
   font-size: 4vw !important;
-
 }
 h1 {
   background-image: url("../assets/img/index.png");
@@ -233,9 +258,9 @@ h1 {
   color: rgb(60, 13, 4);
   font-size: 4vw !important;
 }
-h2.name{
-    font-family: "STYuanti";
-    color: rgb(60, 13, 4);
-    font-weight: 400;
+h2.name {
+  font-family: "STYuanti";
+  color: rgb(60, 13, 4);
+  font-weight: 400;
 }
 </style>

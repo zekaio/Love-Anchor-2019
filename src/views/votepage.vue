@@ -1,7 +1,7 @@
 <template>
   <div id="votepage" >
     <div id="cardcontain">
-    <card v-for="(value,key,index) in test" :info="value" :key="index"  @goback="choose" :ifCheck="ifCheck" >
+    <card v-for="(value,key,index) in test" :info="value" :key="index" :Player="Player"  @goback="choose" :ifCheck="ifCheck" >
       <!-- :btnsrc="btnsrc"  -->
     </card>
     </div>
@@ -29,6 +29,7 @@ export default {
       // btnsrc:"../assets/img/void.png",
       // ifChecked:false
       ifClick:false,
+      Player:0,
       errmsg:""
     }
   },
@@ -49,7 +50,10 @@ export default {
     //  window.console.log(idx);
     //  window.console.log(value);
      this.ifCheck=value;
-
+     this.Player=value;
+     //    for(var i=1;i<=document.getElementsByTagName('audio').length+1;i++){
+    //document.querySelector("#audio" + i).pause();
+    //}
     },
     submit(){
       this.errmsg="";
