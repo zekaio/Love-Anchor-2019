@@ -49,9 +49,14 @@ def checkWechatLogin():
 def page_not_found(error):
     return "请先登录微信！", 401
 
-@app.route('/setopenid', methods=['get'])
-def setopenid():
-	session['user_id'] = 1
+@app.route('/setuserid/<id>', methods=['get'])
+def setuserid(id):
+	session['user_id'] = id
+	return "OK", 204
+	
+@app.route('/clearuserid', methods=['get'])
+def clearuserid():
+	session.clear()
 	return "OK",204
 
 @app.route('/info', methods=['get'])
@@ -135,4 +140,4 @@ def vote(id):
 
 
 if __name__ == '__main__':
-	app.run(port=5000)
+	app.run(port=config.app_port)

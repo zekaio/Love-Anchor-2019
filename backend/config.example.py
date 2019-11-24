@@ -1,5 +1,7 @@
 app_url = ""
 
+app_port = 5000
+
 resources_url = r"/"
 
 pic_url = resources_url + r"pic/"
