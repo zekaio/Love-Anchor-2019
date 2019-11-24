@@ -23,9 +23,10 @@
 
       <div class="piao">{{info.number}}票</div>
       <!-- <div class="button_active" v-show="btnclass==false"  :id="'btn'+info.index" :ref="'btn'+info.index"  ></div> -->
+      <p class="intro">{{info.text}}</p>
       <div :class="btnname" :id="'btn'+info.index" :ref="'btn'+info.index"></div>
       <!-- :style="'backgroundImage:url(' + btnsrc + ')'" v-show="btnclass==true" -->
-      <p class="intro">{{info.text}}</p>
+      
     </div>
   </div>
 </template>
@@ -168,6 +169,7 @@ position: absolute;
   text-align: left;
   float: left;
   font-size: 5vw;
+  margin-top: 5px;
 }
 .piao {
   /* float: left; */
@@ -223,6 +225,7 @@ position: absolute;
   margin-left: 2vw;
   margin-top: 1vw;
   outline: none;
+  margin-top: 5px;
 }
 .playbtn_active {
   -webkit-appearance: none;
@@ -238,6 +241,7 @@ position: absolute;
   margin-left: 2vw;
   margin-top: 1vw;
   outline: none;
+  margin-top: 5px;
 }
 .info {
   margin-left: 40%;
@@ -258,7 +262,7 @@ position: absolute;
   text-align: left;
     white-space: normal;
     /* width: 36vw; */
-    height: 10%;
+    /* height: 10%; */
     /* margin-top: -20px; */
     overflow: scroll;
     margin-bottom: -12.5vw;
