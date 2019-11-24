@@ -9,9 +9,7 @@ CREATE TABLE IF NOT EXISTS anchors (
 	`name`           VARCHAR(20)       NOT NULL DEFAULT '' COMMENT '选手姓名',
     `declaration`    TEXT              NOT NULL DEFAULT '' COMMENT '选手宣言',
     `imgsrc`         VARCHAR(255)      NOT NULL DEFAULT '' COMMENT '选手照片',
-    `audiosrc`       VARCHAR(255)      NOT NULL DEFAULT '' COMMENT '选手声音',   
-	`created_at` 	 timestamp 		   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` 	 timestamp         NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    `audiosrc`       VARCHAR(255)      NOT NULL DEFAULT '' COMMENT '选手声音'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS votes(

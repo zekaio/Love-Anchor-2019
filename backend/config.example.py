@@ -1,5 +1,10 @@
-
 app_url = ""
+
+resources_url = r"/"
+
+pic_url = resources_url + r"pic/"
+
+audio_url = resources_url + r"aduio/"
 
 vote_number_min = 30
 
@@ -18,11 +23,11 @@ db = {
     'database': 'love_anchor2019'
 }
 
-end_time='2019-11-25 00:00:00'
+end_time = '2019-11-25 00:00:00'
 
 errmsg = {
     'min_limit': '该选手一分钟内投票数已达上限~请稍后尝试~',
     'day_limit': '今天已经投过票咯，明天再来吧~',
     'end': '活动已结束！',
-    'insert_err':'投票失败，请稍后尝试~',
+    'insert_err': '投票失败，请稍后尝试~',
 }
