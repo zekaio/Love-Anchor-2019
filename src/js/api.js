@@ -1,7 +1,7 @@
 import wx from "weixin-js-sdk"
 import axios from 'axios'
 import qs from 'qs'
-import { apiurl, phpurl,  getWxurl } from "./config";
+import { apiurl, phpurl,  getWxurl, shareurl, shareimg_url } from "./config";
 export function isWeiXin() {
     var ua = window.navigator.userAgent.toLowerCase();
   if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -12,7 +12,7 @@ export function isWeiXin() {
 }
 export function checkLogin() {
     if (!isWeiXin) {
-      return;
+      return false;
     }
   
     var checkurl = apiurl + "checkLogin";
@@ -25,7 +25,7 @@ export function checkLogin() {
       }
     });
   }
-  export function wxlogin() {
+  export function wxlogin() { //这个是对的
     if (!isWeiXin) {
       return;
     }
@@ -52,8 +52,8 @@ export function checkLogin() {
           //alert(window.location.href.split('#')[0]);
           wx.updateTimelineShareData({
             title: "爱上你主播：爱上你的十二时辰", // 分享标题
-            link: "https://hemc.100steps.net/2019/anchor/recruit/",
-            imgUrl: "https://hemc.100steps.net/2019/anchor/poster/recruit.jpg",
+            link: shareurl,
+            imgUrl: shareimg_url,
             success: function() {},
             cancel: function() {
               this.$message("取消了分享~").catch(() => {});
@@ -64,9 +64,9 @@ export function checkLogin() {
         wx.updateAppMessageShareData({
           title: "爱上你主播：爱上你的十二时辰",
           desc: "", // 分享描述
-          link: "https://hemc.100steps.net/2019/anchor/recruit/",
-          imgUrl: "https://hemc.100steps.net/2019/anchor/poster/recruit.jpg",
-          success: function() {
+          link: shareurl,
+          imgUrl: shareimg_url,
+        success: function() {
             // 用户确认分享后执行的回调函数
           },
           cancel: function() {

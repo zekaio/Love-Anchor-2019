@@ -10,6 +10,7 @@ html{
 }
 body{
   margin: 0%;
+  overflow: hidden;
 }
 #app{
     margin-left: auto;
@@ -23,6 +24,8 @@ body{
 }
 </style>
 <script>
+// import {wxlogin}from "./js/api"; //showlogin,getinfo    记得把这个开起来 上线的时候
+
 export default {
   data() {
     return {
@@ -35,6 +38,9 @@ export default {
     const fromDepth = from.path.split('/').length
     this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
   }
+  },
+  mounted(){
+    // wxlogin();//记得把这个开起来 上线的时候
   }
 }
 </script>

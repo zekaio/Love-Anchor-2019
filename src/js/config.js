@@ -1,10 +1,16 @@
-const baseUrl = "https://hemc.100steps.net/2019/anchor-backend/recruit";
+const baseUrl = "http://kanolin.cn/love-anchor2019/api";
+// const baseUrl = "http://localhost/api/love-anchor2019/api"
 export const apiurl = `${baseUrl}/`;
 // export const ajaxurl = `${baseUrl}/recruit`;
+var id=110;
+export const getinfo = `${baseUrl}/info`;//获取列表
 
-export const getinfo = `${baseUrl}/getinfo`;//获取列表
+export const posturl = `${baseUrl}/vote/`;//提交
+export const loginurl =  `${baseUrl}/setuserid/`+id+'';
+export const logouturl = `${baseUrl}/clearuserid`;
 
-export const posturl = `${baseUrl}/getinfo`;//提交
+export const shareurl = "https://hemc.100steps.net/2019/anchor/recruit/";
+export const shareimg_url = "https://hemc.100steps.net/2019/anchor/poster/recruit.jpg";
 
 export const phpurl =
   "https://hemc.100steps.net/2018/fireman/auth.php?redirect=" +
@@ -21,14 +27,28 @@ export const show = {//请求列表
     },
     transformRequest: [
       function(data) {
+        // window.console.log(data)
         data = JSON.stringify(data);
         return data;
       }
     ],
     url: getinfo
   };
-  export const vote = {//提交索引
-    method: "POST",
+  export const login = {//请求列表
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    // transformRequest: [
+    //   function(data) {
+    //     data = JSON.stringify(data);
+    //     return data;
+    //   }
+    // ],
+    url: loginurl
+  };
+  export const logout = {//请求列表
+    method: "GET",
     headers: {
       "Content-Type": "application/json"
     },
@@ -38,5 +58,5 @@ export const show = {//请求列表
         return data;
       }
     ],
-    url: posturl
+    url: logouturl
   };

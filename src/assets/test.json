@@ -1,42 +1,98 @@
 [
     {
-        "index":1,
-        "name":"name",
-        "num":788,
-        "text":"假如说这个人废话很多，多得都显示不下还不换行的那种，好麻烦啊 其实没什么人会看宣言吧 除非写的真的很骚",
-        "iconsrc":"https://pic4.zhimg.com/80/v2-5f951b83e7ea83abd9e265f8ec9f4147_qhd.jpg",
-        "audiosrc":"https://sw-sycdn.kuwo.cn/1b2296318e11c4ee3a653c95e06d342d/5dd915cd/resource/n3/0/97/2438462179.mp3"
+        "audiosrc": "/Love-Anchor2019-backend/resources/audio/乃菲赛(2).mp3",
+        "iconsrc": "/Love-Anchor2019-backend/resources/pic/",
+        "index": 1,
+        "name": "乃菲赛",
+        "number": 1,
+        "text": "亮出最甜的微笑，展现最美好的自己。"
     },
     {
-        "index":9,
-        "name":"name",
-        "num":788,
-        "text":"假如这个人也写的很多，那我的div岂不是要坏掉了 草十二点了 我还有作业要做啊",
-        "iconsrc":"http://n.sinaimg.cn/ent/transform/405/w630h575/20181015/Mgkq-hmivixm7940674.jpg",
-        "audiosrc":"https://sw-sycdn.kuwo.cn/1b2296318e11c4ee3a653c95e06d342d/5dd915cd/resource/n3/0/97/2438462179.mp3"
+        "audiosrc": "/Love-Anchor2019-backend/resources/audio/赵亚棣_缩混1.mp3",
+        "iconsrc": "/Love-Anchor2019-backend/resources/pic/",
+        "index": 2,
+        "name": "赵亚棣",
+        "number": 1,
+        "text": "抛开一切烦恼，静下心，跟着声音去旅行"
     },
     {
-        "index":3,
-        "name":"name",
-        "num":788,
-        "text":"intro intro intro intro",
-        "iconsrc":"http://n.sinaimg.cn/ent/transform/405/w630h575/20181015/Mgkq-hmivixm7940674.jpg",
-        "audiosrc":"https://sw-sycdn.kuwo.cn/1b2296318e11c4ee3a653c95e06d342d/5dd915cd/resource/n3/0/97/2438462179.mp3"
+        "audiosrc": "/Love-Anchor2019-backend/resources/audio/滕达1.mp3",
+        "iconsrc": "/Love-Anchor2019-backend/resources/pic/",
+        "index": 3,
+        "name": "滕达",
+        "number": 3,
+        "text": "爱上这个舞台，做无悔的自己。"
     },
     {
-        "index":4,
-        "name":"name",
-        "num":788,
-        "text":"intro intro intro intro",
-        "iconsrc":"https://pic4.zhimg.com/80/v2-5f951b83e7ea83abd9e265f8ec9f4147_qhd.jpg",
-        "audiosrc":"https://sw-sycdn.kuwo.cn/1b2296318e11c4ee3a653c95e06d342d/5dd915cd/resource/n3/0/97/2438462179.mp3"
+        "audiosrc": "/Love-Anchor2019-backend/resources/audio/刘豫_缩混.mp3",
+        "iconsrc": "/Love-Anchor2019-backend/resources/pic/",
+        "index": 4,
+        "name": "刘豫",
+        "number": 0,
+        "text": "华园十二时，发声在此时\r\n“刘”声在爱上，畅言我所“豫\r\n\r\n"
     },
     {
-        "index":5,
-        "name":"name",
-        "num":788,
-        "text":"intro intro intro intro",
-        "iconsrc":"https://pic4.zhimg.com/80/v2-5f951b83e7ea83abd9e265f8ec9f4147_qhd.jpg",
-        "audiosrc":"https://sw-sycdn.kuwo.cn/1b2296318e11c4ee3a653c95e06d342d/5dd915cd/resource/n3/0/97/2438462179.mp3"
+        "audiosrc": "/Love-Anchor2019-backend/resources/audio/2_卢纪元_缩混.mp3",
+        "iconsrc": "/Love-Anchor2019-backend/resources/pic/",
+        "index": 5,
+        "name": "卢纪元",
+        "number": 9,
+        "text": "就是一直努力，冲冲冲！"
+    },
+    {
+        "audiosrc": "/Love-Anchor2019-backend/resources/audio/张泽宇2_缩混_01.mp3",
+        "iconsrc": "/Love-Anchor2019-backend/resources/pic/",
+        "index": 6,
+        "name": "张泽宇",
+        "number": 3,
+        "text": "用言语阐释新思想，用话筒传递正能量。"
+    },
+    {
+        "audiosrc": "/Love-Anchor2019-backend/resources/audio/林君怡der.mp3",
+        "iconsrc": "/Love-Anchor2019-backend/resources/pic/",
+        "index": 7,
+        "name": "林君怡",
+        "number": 0,
+        "text": "真诚就好"
+    },
+    {
+        "audiosrc": "/Love-Anchor2019-backend/resources/audio/陈雪妍.mp3",
+        "iconsrc": "/Love-Anchor2019-backend/resources/pic/",
+        "index": 8,
+        "name": "陈雪妍",
+        "number": 0,
+        "text": "如果要给主持加一个期限，我希望是一万年"
+    },
+    {
+        "audiosrc": "/Love-Anchor2019-backend/resources/audio/冯怡硕.mp3",
+        "iconsrc": "/Love-Anchor2019-backend/resources/pic/",
+        "index": 9,
+        "name": "冯怡硕",
+        "number": 0,
+        "text": "因声音，感受生活百态\r\n因主持，经历风浪沉浮\r\n因为你，再见更好的我"
+    },
+    {
+        "audiosrc": "/Love-Anchor2019-backend/resources/audio/戴芯瑜_缩混.mp3",
+        "iconsrc": "/Love-Anchor2019-backend/resources/pic/",
+        "index": 10,
+        "name": "戴芯瑜",
+        "number": 1,
+        "text": "赤子之心，随遇而安"
+    },
+    {
+        "audiosrc": "/Love-Anchor2019-backend/resources/audio/11号_陈耿 .mp3",
+        "iconsrc": "/Love-Anchor2019-backend/resources/pic/",
+        "index": 11,
+        "name": "陈耿",
+        "number": 6,
+        "text": "享受舞台每一次荣光，尊重幕后每一份耕耘！"
+    },
+    {
+        "audiosrc": "Love-Anchor2019-backend/resources/audio/吴承钟4_缩混.mp3",
+        "iconsrc": "/Love-Anchor2019-backend/resources/pic/",
+        "index": 12,
+        "name": "吴承钟",
+        "number": 0,
+        "text": "我想为你诉说整个世界，你愿意听吗？"
     }
 ]

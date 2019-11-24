@@ -4,9 +4,9 @@
     <div
       class="icon-container"
       :id="'box'+info.index"
-      :style="'backgroundImage:url(' + info.iconsrc + ')'"
+      :style="'backgroundImage:url(' +'http://'+ info.iconsrc + ')'"
     >
-      <audio :id="'audio'+info.index" :src="info.audiosrc" controlslist="nodownload"></audio>
+      <audio :id="'audio'+info.index" :src=" 'http://'+info.audiosrc" controlslist="nodownload"></audio>
     </div>
     <div class="info">
       <h2 class="name">{{info.name}}</h2>
@@ -15,12 +15,13 @@
         :class="audiobtn"
         ref="play"
         id="play"
+        muted="muted"
         @click="control"
         value
         :ifChecked="ifChecked"
       /><!---+realplay--!-->
 
-      <div class="piao">{{info.num}}票</div>
+      <div class="piao">{{info.number}}票</div>
       <!-- <div class="button_active" v-show="btnclass==false"  :id="'btn'+info.index" :ref="'btn'+info.index"  ></div> -->
       <div :class="btnname" :id="'btn'+info.index" :ref="'btn'+info.index"></div>
       <!-- :style="'backgroundImage:url(' + btnsrc + ')'" v-show="btnclass==true" -->
@@ -130,19 +131,27 @@ export default {
 };
 </script>
 <style>
-.icon-container:hover {
-  box-shadow: 0px 1px 8px 1px #ded5d5;
-  border-radius: 2rem;
-}
+
 .icon-container {
   background-image: url(https://cn.bing.com/th?id=OIP.SierodiUS4Sz4Is_WSARdgHaDP&pid=Api&rs=1);
-  background-size: 100%;
   height: 25vw;
   width: 25vw;
+      background-size: 250% !important;
+    background-position-x: center;
+    background-position-y: -20px;
   margin: 0;
   margin-top: 2.5vw;
   float: left;
   border-radius: 8px;
+}
+.icon-container:hover {
+position: absolute;
+    top: 10%;
+    background-size: 100% !important;
+    background-position-y: 0px;
+    background-repeat: no-repeat;
+    width: 90%;
+    height: 100%;
 }
 .cardbox {
   /* width: 96%; */
@@ -172,7 +181,7 @@ export default {
   /* margin-left: 10px; */
   width: 15vw;
   height: 12vw;
-  margin-left: -7px;
+  margin-left: -15px;
 }
 .button {
   display: block;
@@ -244,6 +253,19 @@ export default {
   font-family: "Microsoft YaHei";
   color: rgb(60, 13, 4);
   font-size: 4vw !important;
+}
+.intro{
+  text-align: left;
+    white-space: normal;
+    /* width: 36vw; */
+    height: 10%;
+    /* margin-top: -20px; */
+    overflow: scroll;
+    margin-bottom: -12.5vw;
+    font-family: "Microsoft YaHei";
+    color: rgb(60, 13, 4);
+    font-size: 4vw !important;
+    width: 70%;
 }
 h1 {
   background-image: url("../assets/img/index.png");
