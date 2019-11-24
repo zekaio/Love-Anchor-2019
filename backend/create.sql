@@ -16,7 +16,6 @@ CREATE TABLE IF NOT EXISTS votes(
     `id`             INT AUTO_INCREMENT PRIMARY KEY        COMMENT 'ID',
     `user_id`        VARCHAR(255)      NOT NULL DEFAULT '' COMMENT '用户id',
     `anchor_id`      INT               NOT NULL DEFAULT 0  COMMENT '投票选手id',
-    `ip`             VARCHAR(20)       NOT NULL DEFAULT '' COMMENT '请求ip',
     `created_at` 	 timestamp 		   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` 	 timestamp         NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

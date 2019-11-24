@@ -49,15 +49,15 @@ def checkWechatLogin():
 def page_not_found(error):
     return "请先登录微信！", 401
 
-@app.route('/setuserid/<id>', methods=['get'])
-def setuserid(id):
-	session['user_id'] = id
-	return "OK", 204
+# @app.route('/setuserid/<id>', methods=['get'])
+# def setuserid(id):
+# 	session['user_id'] = id
+# 	return "OK", 204
 	
-@app.route('/clearuserid', methods=['get'])
-def clearuserid():
-	session.clear()
-	return "OK",204
+# @app.route('/clearuserid', methods=['get'])
+# def clearuserid():
+# 	session.clear()
+# 	return "OK",204
 
 @app.route('/info', methods=['get'])
 def getinfo():
@@ -123,8 +123,8 @@ def vote(id):
 	"""
 	lua = r.register_script(luastr)
 	if int(lua(keys=['have' + str(id)], args=[config.vote_number_min])):
-		p = (session['user_id'], id, request.remote_addr)
-		db.execute("insert into votes (user_id,anchor_id,ip) values (%s,%s,%s)", p)
+		p = (session['user_id'], id)
+		db.execute("insert into votes (user_id,anchor_id) values (%s,%s)", p)
 		if db.rowcount:
 			return jsonify({'errcode': 0, 'errmsg': ''}),200
 		else:

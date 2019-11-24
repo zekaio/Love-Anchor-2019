@@ -6,7 +6,7 @@ resources_url = r"/"
 
 pic_url = resources_url + r"pic/"
 
-audio_url = resources_url + r"aduio/"
+audio_url = resources_url + r"audio/"
 
 vote_number_min = 30
 
