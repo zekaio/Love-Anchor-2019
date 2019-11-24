@@ -9,9 +9,10 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY']=config.SECRET_KEY
+app.config['SECRET_KEY'] = config.SECRET_KEY
+app.config['DEBUG'] = False
 
-CORS(app, supports_credentials=True)
+#CORS(app, supports_credentials=True)
 
 r = redis.Redis(host=config.redis['host'], port=config.redis['port'], db=config.redis['db'])
 conn = mysql.connector.connect(host=config.db['host'], user=config.db['user'],
@@ -23,8 +24,7 @@ def checkWechatLogin():
 	if "user_id" not in session:
 		sess_id = request.cookies.get("PHPSESSID")
 		if sess_id is not None:
-			r = requests.get("https://hemc.100steps.net/2017/wechat/Home/Index/getUserInfo",
-                             timeout=5, cookies=dict(PHPSESSID=sess_id))
+			r = requests.get(config.wx_check_url, timeout=5, cookies=dict(PHPSESSID=sess_id))
 			try:
 				t = r.json()
 				if "openid" in t:
@@ -91,7 +91,11 @@ def vote(id):
 			'errcode':4,
 			'errmsg':config.errmsg['end']
 		})
-
+	if now < config.start_time:
+		return jsonify({
+			'errcode':4,
+			'errmsg':config.errmsg['start']
+		})
 	user_id = checkWechatLogin()
 	try:
 		conn.ping()
