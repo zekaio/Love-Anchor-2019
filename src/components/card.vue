@@ -262,7 +262,7 @@ position: absolute;
   text-align: left;
     white-space: normal;
     /* width: 36vw; */
-    /* height: 10%; */
+    height: 11vw;
     /* margin-top: -20px; */
     overflow: scroll;
     margin-bottom: -12.5vw;

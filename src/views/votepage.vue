@@ -21,7 +21,7 @@
 </template>
 <script>
 import card from "../components/card";
-import { posturl,  show } from "../js/config"; //show,login,getinfo
+import { posturl,login,  show } from "../js/config"; //show,login,getinfo
 import axios from "axios";
 // var test = require("@/assets/test.json");
 
@@ -55,7 +55,7 @@ export default {
     card
   },
   mounted() {
-    // axios(login);
+    axios(login);
     axios(show)
       .then(res => {
         this.test = Object.values(res.data);
@@ -126,6 +126,9 @@ export default {
 };
 </script>
 <style>
+#votepage{
+  padding-top: 10%;
+}
 #cardcontain {
   height: 100vw;
   padding-top: 20vw;
