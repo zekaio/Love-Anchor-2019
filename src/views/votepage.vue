@@ -116,7 +116,10 @@ export default {
             // }
             if (res.data.errcode == 3) {
               this.$router.push("/alert");
-            } else {
+            }else if(res.data.errcode == 0){
+              this.errmsg = "感谢投票！"
+            } 
+            else {
               this.errmsg = res.data.errmsg;
             }
           })
@@ -124,6 +127,7 @@ export default {
             if (error.response) {
               // 服务器返回正常的异常对象
               window.console.log(error.response.data);
+              this.errmsg= "请求中……";
               if(error.response.status===401){
               window.location.href = phpurl;
               }

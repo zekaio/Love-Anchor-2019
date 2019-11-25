@@ -81,9 +81,9 @@ export default {
     // },
     audiobtn: function() {
       if (this.ifPlay == true) {
-        if (this.Player != this.info.index) {
-          return "playbtn";
-        }
+        // if (this.Player != this.info.index) {
+        //   return "playbtn";
+        // }
         return "playbtn_active";
       } else {
         return "playbtn";
