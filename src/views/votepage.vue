@@ -87,12 +87,16 @@ export default {
     changePlayer(newName){
       var oldName = this.Player;
       this.Player = newName ;
+      if(newName==oldName){
+        this.Player=0;
+      }
               document.querySelector("#audio" + oldName).pause();
                    document.querySelector("#audio" + oldName).currentTime = 0;
 
         document.querySelector("#audio" + newName).play();
     },
     choose(value) {
+      // document.querySelector("#audio" + this.Player).pause();
       this.ifCheck = value;
       // this.Player = value;
       //    for(var i=1;i<=document.getElementsByTagName('audio').length+1;i++){

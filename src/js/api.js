@@ -39,8 +39,8 @@ export function checkLogin() {
       body: qs.stringify({
         url: location.href.split("#")[0]
       })
-    })
-      .then(res => res.json()).then(res => {
+    }).then(res => {
+      res.json();
         wx.config({
           appId: res.appId, // 和获取Ticke的必须一样------必填，公众号的唯一标识
           timestamp: res.timestamp,
