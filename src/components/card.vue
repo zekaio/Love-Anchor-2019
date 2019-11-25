@@ -93,6 +93,11 @@ export default {
   mounted() {
     // this.$refs.audio.src = this.info.audiosrc;
   },
+    watch: {
+    Player:function () {
+        document.querySelector("#audio" + this.Player).pause();
+    }
+  },
   methods: {
     change() {
       sessionStorage.setItem("choose", this.info.index);

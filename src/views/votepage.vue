@@ -65,7 +65,7 @@ export default {
       .catch(function (error)  {
         window.console.log(error);
         if (error.response.status === 401) {
-          window.location.href = phpurl;
+          window.location.href = phpurl
           return;
         }
         sessionStorage.setItem("line2", "似乎网络出错了");
@@ -123,16 +123,16 @@ export default {
           .catch(function(error) {
             if (error.response) {
               // 服务器返回正常的异常对象
-              console.log(error.response.data);
+              window.console.log(error.response.data);
               if(error.response.status===401){
               window.location.href = phpurl;
-              };
+              }
               this.errmsg=error.response.data
             } else {
               // 服务器发生未处理的异常
               this.errmsg=error.message;
             }
-            console.log(error.config);
+            window.console.log(error.config);
           });
       }
     }
@@ -141,7 +141,7 @@ export default {
 </script>
 <style>
 #votepage {
-  padding-top: 10%;
+  /* padding-top: 10%; */
 }
 #cardcontain {
   height: 100vw;
