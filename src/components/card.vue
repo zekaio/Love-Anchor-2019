@@ -52,7 +52,7 @@ export default {
       // btnname:"button"
       //  audiobtn:"playbtn",
 
-      ifPlay: false
+     
     };
   },
   computed: {
@@ -69,6 +69,13 @@ export default {
         return "button";
       }
     },
+     ifPlay: function(){
+      if (this.Player == this.info.index) {
+        return  true;
+      }else{
+        return false;
+      }
+     },
     // realplay: function() {
     //   if (this.Player != 0) {
     //     if (this.ifCheck != this.info.index) {
@@ -81,7 +88,7 @@ export default {
     // },
     audiobtn: function() {
       // if (this.ifPlay == true) {
-        if (this.Player == this.info.index) {
+      if (this.ifPlay) {
         //   return "playbtn";
         // }
         return "playbtn_active";
@@ -93,7 +100,7 @@ export default {
   mounted() {
     // this.$refs.audio.src = this.info.audiosrc;
   },
-    watch: {
+  watch: {
     //     Player:function () {
     //     document.querySelector("#audio" + this.Player).pause();
     //     this.Player=this.ifCheck;
@@ -104,38 +111,39 @@ export default {
       sessionStorage.setItem("choose", this.info.index);
       // this.$parent.$emit('goback',this.info.index);
       this.$emit("goback", this.info.index);
-      window.console.log("正在播放的是"+this.Player);
+      window.console.log("正在播放的是" + this.Player);
     },
     control() {
-      window.console.log("正在播放的是"+this.Player);
+      window.console.log("正在播放的是" + this.Player);
       this.$emit("changePlayer", this.info.index);
 
-        // document.querySelector("#audio" + this.Player).pause();
-        // this.Player=this.ifCheck;
+
+      // document.querySelector("#audio" + this.Player).pause();
+      // this.Player=this.ifCheck;
       // if (this.Player != this.info.index && this.Player != 0) {
       //   document.querySelector("#audio" + this.Player).pause();
       // } else if (this.Player == 0 || this.Player == this.info.index) {
-        // var audio = document.querySelector("#audio" + this.Player);
-        // switch (this.ifPlay) {
-        //   case false:
-        //     // this.audiobtn="playbtn_active";
-        //     audio.play();
-        //     this.ifPlay = true;
+      // var audio = document.querySelector("#audio" + this.Player);
+      // switch (this.ifPlay) {
+      //   case false:
+      //     // this.audiobtn="playbtn_active";
+      //     audio.play();
+      //     this.ifPlay = true;
 
-        //     break;
-        //   case true:
-        //     // this.audiobtn="playbtn";
-        //     audio.pause();
-        //     audio.currentTime = 0;
-        //     this.ifPlay = false;
-        //     break;
-        // }
-        //   if(this.info.index==this.ifCheck){
-        //   this.audiobtn="playbtn_active";
-        //   return;
-        // }else{
-        //   this.audiobtn="playbtn"
-        // }
+      //     break;
+      //   case true:
+      //     // this.audiobtn="playbtn";
+      //     audio.pause();
+      //     audio.currentTime = 0;
+      //     this.ifPlay = false;
+      //     break;
+      // }
+      //   if(this.info.index==this.ifCheck){
+      //   this.audiobtn="playbtn_active";
+      //   return;
+      // }else{
+      //   this.audiobtn="playbtn"
+      // }
       // }
     }
   }
@@ -164,14 +172,14 @@ export default {
 }
 
 .icon-container:hover {
-position: absolute;
-    top: 10%;
-    background-size: 100%!important;
-    background-position-y: 0;
-    background-repeat: no-repeat;
-    width: 90%;
-    height: 62%;
-    border-radius: 2rem;
+  position: absolute;
+  top: 10%;
+  background-size: 100% !important;
+  background-position-y: 0;
+  background-repeat: no-repeat;
+  width: 90%;
+  height: 62%;
+  border-radius: 2rem;
 }
 .cardbox {
   /* width: 96%; */

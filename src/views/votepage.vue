@@ -87,13 +87,16 @@ export default {
     changePlayer(newName){
       var oldName = this.Player;
       this.Player = newName ;
-      if(newName==oldName){
-        this.Player=0;
-      }
-              document.querySelector("#audio" + oldName).pause();
-                   document.querySelector("#audio" + oldName).currentTime = 0;
-
-        document.querySelector("#audio" + newName).play();
+      // if(newName==oldName){
+      //   this.Player=0;
+      // }
+        document.querySelector("#audio" + oldName).pause();
+        document.querySelector("#audio" + oldName).currentTime = 0;
+        if (newName != oldName) {
+          document.querySelector("#audio" + newName).play();
+        }else{
+          document.querySelector("#audio" + oldName).play();
+        }
     },
     choose(value) {
       // document.querySelector("#audio" + this.Player).pause();
