@@ -61,6 +61,7 @@ def page_not_found(error):
 
 @app.route('/info', methods=['get'])
 def getinfo():
+	checkWechatLogin()
 	keys = ['index', 'name', 'text', 'iconsrc', 'audiosrc']
 	anchors = []
 
@@ -70,7 +71,7 @@ def getinfo():
 		conn.reconnect()
 	db.execute("select id,name,declaration,imgsrc,audiosrc from anchors order by id")
 	result = db.fetchall()
-	db.execute("select a.id,count(b.anchor_id) from `anchors` as a left join `votes` as b on a.id=b.anchor_id group by a.id order by a.id")
+	db.execute("select a.id,ifnull(b.number,0) from `anchors` as a left join (select anchor_id,count(anchor_id) as number from votes group by anchor_id order by anchor_id) as b on a.id=b.anchor_id group by a.id order by a.id")
 	num = db.fetchall()
 	i = 0
 	for anchor in result:
@@ -85,15 +86,15 @@ def getinfo():
 
 @app.route('/vote/<id>', methods=['POST'])
 def vote(id):
-	if id < 1 or id > 12:
+	if int(id) not in range(1, 13):
 		return jsonify({
-			'errcode':5,
-			'errmsg':'选手序号不在范围内！'
+			'errcode':6,
+			'errmsg':config.errmsg['index_err']
 		})
 	now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
 	if now > config.end_time:
 		return jsonify({
-			'errcode':4,
+			'errcode':5,
 			'errmsg':config.errmsg['end']
 		})
 	if now < config.start_time:
@@ -116,7 +117,7 @@ def vote(id):
 			return jsonify({
 				'errcode':3,
 				'errmsg':config.errmsg['day_limit']
-			}),400
+			})
 		
 	luastr = """
 		if redis.call('exists',KEYS[1]) == 1 then
@@ -135,17 +136,20 @@ def vote(id):
 		p = (session['user_id'], id)
 		db.execute("insert into votes (user_id,anchor_id) values (%s,%s)", p)
 		if db.rowcount:
-			return jsonify({'errcode': 0, 'errmsg': ''}),200
+			return jsonify({
+				'errcode': 0,
+				'errmsg': config.errmsg['success']
+			}),200
 		else:
 			return jsonify({
 				'errcode': 1,
 				'errmsg': config.errmsg['insert_err']
-			}), 400
+			})
 	else:
 		return jsonify({
 			'errcode':2,
 			'errmsg':config.errmsg['min_limit']
-		}), 400
+		})
 
 
 if __name__ == '__main__':
