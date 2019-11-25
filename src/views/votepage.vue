@@ -82,6 +82,7 @@ export default {
       //document.querySelector("#audio" + i).pause();
       //}
       this.ifClick = false;
+      this.errmsg="你选择的是第"+this.ifCheck+"号选手";
     },
     submit() {
       this.errmsg = "";
