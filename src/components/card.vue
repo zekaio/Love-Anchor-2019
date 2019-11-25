@@ -94,24 +94,27 @@ export default {
     // this.$refs.audio.src = this.info.audiosrc;
   },
     watch: {
-    Player:function () {
-        document.querySelector("#audio" + this.Player).pause();
-    },
-
+    //     Player:function () {
+    //     document.querySelector("#audio" + this.Player).pause();
+    //     this.Player=this.ifCheck;
+    // },
   },
   methods: {
     change() {
       sessionStorage.setItem("choose", this.info.index);
       // this.$parent.$emit('goback',this.info.index);
       this.$emit("goback", this.info.index);
-      window.console.log(this.Player);
+      window.console.log("正在播放的是"+this.Player);
     },
     control() {
-      window.console.log(this.Player);
-      if (this.Player != this.info.index && this.Player != 0) {
-        document.querySelector("#audio" + this.Player).pause();
-      } else if (this.Player == 0 || this.Player == this.info.index) {
-        var audio = document.querySelector("#audio" + this.info.index);
+      window.console.log("正在播放的是"+this.Player);
+      this.Player=this.info.index;
+        // document.querySelector("#audio" + this.Player).pause();
+        // this.Player=this.ifCheck;
+      // if (this.Player != this.info.index && this.Player != 0) {
+      //   document.querySelector("#audio" + this.Player).pause();
+      // } else if (this.Player == 0 || this.Player == this.info.index) {
+        var audio = document.querySelector("#audio" + this.Player);
         switch (this.ifPlay) {
           case false:
             // this.audiobtn="playbtn_active";
@@ -132,7 +135,7 @@ export default {
         // }else{
         //   this.audiobtn="playbtn"
         // }
-      }
+      // }
     }
   }
 };

@@ -62,10 +62,10 @@ export default {
         //   window.location.href = phpurl;
         // }
       })
-      .catch(function (error)  {
+      .catch(function(error) {
         window.console.log(error);
         if (error.response.status === 401) {
-          window.location.href = phpurl
+          window.location.href = phpurl;
           return;
         }
         sessionStorage.setItem("line2", "似乎网络出错了");
@@ -75,18 +75,28 @@ export default {
   },
   computed: {},
   watch: {
-    isCheck:function () {
-      this.errmsg="你选择的是第"+this.ifCheck+"号选手";
+    Player: {
+      handler(newName, oldName) {
+        document.querySelector("#audio" + oldName).pause();
+        // document.querySelector("#audio" + newName).play();
+      },
+      immediate: true
+    },
+    ifCheck: function() {
+      this.errmsg = "你选择的是第" + this.ifCheck + "号选手";
+      // if(this.Player!=this.ifCheck){
+      // document.querySelector("#audio" + this.Player).pause();
+      // }
     }
   },
   methods: {
     choose(value) {
       this.ifCheck = value;
-      this.Player = value;
+      // this.Player = value;
       //    for(var i=1;i<=document.getElementsByTagName('audio').length+1;i++){
       //document.querySelector("#audio" + i).pause();
       //
-      this.ifClick=false;
+      this.ifClick = false;
     },
     submit() {
       this.errmsg = "";
@@ -120,11 +130,10 @@ export default {
             // }
             if (res.data.errcode == 3) {
               this.$router.push("/alert");
-            }else if(res.data.errcode == 0){
-              this.ifClick=true;
-              this.errmsg = "感谢投票！"
-            } 
-            else {
+            } else if (res.data.errcode == 0) {
+              this.ifClick = true;
+              this.errmsg = "感谢投票！";
+            } else {
               this.errmsg = res.data.errmsg;
             }
           })
@@ -132,14 +141,14 @@ export default {
             if (error.response) {
               // 服务器返回正常的异常对象
               window.console.log(error.response.data);
-              this.errmsg= "请求中……";
-              if(error.response.status===401){
-              window.location.href = phpurl;
+              this.errmsg = "请求中……";
+              if (error.response.status === 401) {
+                window.location.href = phpurl;
               }
-              this.errmsg=error.response.data
+              this.errmsg = error.response.data;
             } else {
               // 服务器发生未处理的异常
-              this.errmsg=error.message;
+              this.errmsg = error.message;
             }
             window.console.log(error.config);
           });
