@@ -91,11 +91,9 @@ export default {
       //   this.Player=0;
       // }
         document.querySelector("#audio" + oldName).pause();
-        document.querySelector("#audio" + oldName).currentTime = 0;
-        if (newName != oldName) {
+        if(oldName != newName){
           document.querySelector("#audio" + newName).play();
-        }else{
-          document.querySelector("#audio" + oldName).play();
+          document.querySelector("#audio" + oldName).currentTime = 0;
         }
     },
     choose(value) {

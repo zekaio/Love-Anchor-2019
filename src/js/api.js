@@ -76,11 +76,12 @@ export function checkLogin() {
           }
         });
         wx.error(function() {
-          this.$alert("授权失败了=n=", "提示", {
-            confirmButtonText: "重试",
-            cancelButtonText: "取消"
-          }).catch(() => {});
+          // this.$alert("授权失败了=n=", "提示", {
+          //   confirmButtonText: "重试",
+          //   cancelButtonText: "取消"
+          // }).catch(() => {});
           //点击重试 再重新请求一次  取消就消失弹框
+          
         });
         //处理验证成功的信息
       })
