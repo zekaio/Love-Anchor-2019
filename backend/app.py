@@ -71,7 +71,7 @@ def getinfo():
 		conn.reconnect()
 	db.execute("select id,name,declaration,imgsrc,audiosrc from anchors order by id")
 	result = db.fetchall()
-	db.execute("select a.id,count(b.anchor_id) from `anchors` as a left join `votes` as b on a.id=b.anchor_id group by a.id order by a.id")
+	db.execute("select a.id,ifnull(b.number,0) from `anchors` as a left join (select anchor_id,count(anchor_id) as number from votes group by anchor_id order by anchor_id) as b on a.id=b.anchor_id group by a.id order by a.id")
 	num = db.fetchall()
 	i = 0
 	for anchor in result:
