@@ -109,7 +109,7 @@ export default {
         };
         this.axios(vote).then(res => {
           window.console.log(res);
-          if (res.response.status == 401) {
+          if (res.status == 401) {
             window.location.href = phpurl;
           }
           if (res.data.errcode == 3) {

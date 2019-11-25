@@ -143,15 +143,25 @@ export default {
   margin-top: 2.5vw;
   float: left;
   border-radius: 8px;
+  /* 如果要显示四个的话↓ 要这个不要上面的
+  height: 135vw;
+
+    overflow-y: scroll;
+    margin-bottom: 5vw;
+    padding-bottom: 5vw;
+    padding-left: 2%;
+    padding-right: 2%; */
 }
+
 .icon-container:hover {
-  position: absolute;
-  top: 10%;
-  background-size: 100% !important;
-  background-position-y: 0px;
-  background-repeat: no-repeat;
-  width: 90%;
-  height: 100%;
+position: absolute;
+    top: 10%;
+    background-size: 100%!important;
+    background-position-y: 0;
+    background-repeat: no-repeat;
+    width: 90%;
+    height: 62%;
+    border-radius: 2rem;
 }
 .cardbox {
   /* width: 96%; */
