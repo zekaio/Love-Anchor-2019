@@ -61,6 +61,7 @@ def page_not_found(error):
 
 @app.route('/info', methods=['get'])
 def getinfo():
+	user_id = checkWechatLogin()
 	keys = ['index', 'name', 'text', 'iconsrc', 'audiosrc']
 	anchors = []
 
@@ -85,7 +86,7 @@ def getinfo():
 
 @app.route('/vote/<id>', methods=['POST'])
 def vote(id):
-	if id < 1 or id > 12:
+	if int(id) < 1 or int(id) > 12:
 		return jsonify({
 			'errcode':5,
 			'errmsg':'选手序号不在范围内！'
