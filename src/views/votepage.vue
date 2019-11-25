@@ -7,6 +7,7 @@
         :key="index"
         :Player="Player"
         @goback="choose"
+        @changePlayer="changePlayer"
         :ifCheck="ifCheck"
       >
         <!-- :btnsrc="btnsrc"  -->
@@ -75,18 +76,6 @@ export default {
   },
   computed: {},
   watch: {
-    Player: {
-      handler(newName, oldName) {
-        // if(newName === oldName){
-        //  
-        // }
-        document.querySelector("#audio" + oldName).pause();
-                   document.querySelector("#audio" + oldName).currentTime = 0;
-
-        document.querySelector("#audio" + newName).play();
-      },
-      immediate: true
-    },
     ifCheck: function() {
       this.errmsg = "你选择的是第" + this.ifCheck + "号选手";
       // if(this.Player!=this.ifCheck){
@@ -95,6 +84,14 @@ export default {
     }
   },
   methods: {
+    changePlayer(newName){
+      var oldName = this.Player;
+      this.Player = newName ;
+              document.querySelector("#audio" + oldName).pause();
+                   document.querySelector("#audio" + oldName).currentTime = 0;
+
+        document.querySelector("#audio" + newName).play();
+    },
     choose(value) {
       this.ifCheck = value;
       // this.Player = value;

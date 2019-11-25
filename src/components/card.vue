@@ -108,7 +108,8 @@ export default {
     },
     control() {
       window.console.log("正在播放的是"+this.Player);
-      this.Player=this.info.index;
+      this.$emit("changePlayer", this.info.index);
+
         // document.querySelector("#audio" + this.Player).pause();
         // this.Player=this.ifCheck;
       // if (this.Player != this.info.index && this.Player != 0) {
