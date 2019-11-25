@@ -21,11 +21,9 @@
 </template>
 <script>
 import card from "../components/card";
-import { posturl,login,  show } from "../js/config"; //show,login,getinfo
-import axios from "axios";
-// var test = require("@/assets/test.json");
+import { posturl,  show ,phpurl} from "../js/config"; //show,login,getinfo
+// import axios from "axios";
 
-// alert(test);
 // fetch(getinfo, {
 //     headers: {
 //       "Content-Type": "application/json"
@@ -55,26 +53,30 @@ export default {
     card
   },
   mounted() {
-    axios(login);
-    axios(show)
+    this.axios(show)
       .then(res => {
         this.test = Object.values(res.data);
-        window.console.log(res.data)
-        window.console.log(this.test)
+        sessionStorage.setItem("line1","");
+            sessionStorage.setItem("line2","");
+            if(res.response.status==401){
+          window.location.href=phpurl;
+            }
       })
       .catch(error => {
         window.console.log(error);
+        // if(error.response.status==401){
+        //   window.location.href=phpurl;
+        //   return;
+        // }
+            sessionStorage.setItem("line2","似乎网络出错了");
+            sessionStorage.setItem("line1","请稍候再试");
+        this.$router.push("/alert");
       });
-    // test = Object.values(test);
-    // window.console.log(test);
-    // sessionStorage.setItem("choose", 0);
+
   },
   computed: {},
   methods: {
     choose(value) {
-      // var idx=sessionStorage.getItem('choose');
-      //  window.console.log(idx);
-      //  window.console.log(value);
       this.ifCheck = value;
       this.Player = value;
       //    for(var i=1;i<=document.getElementsByTagName('audio').length+1;i++){
@@ -84,17 +86,19 @@ export default {
     },
     submit() {
       this.errmsg = "";
+      if(this.ifCheck==0){
+        this.errmsg = "请选择选手！" ;
+        return;
+      }
       if(this.ifClick==true){
         this.errmsg = "点太快啦！"
           return;
       }
       this.ifClick=true;
+      if(this.ifCheck!=0){
       const vote = {
         //提交索引
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
         data: this.ifCheck,
         transformRequest: [
           function(data) {
@@ -104,17 +108,19 @@ export default {
         ],
         url: posturl+this.ifCheck
       };
-      axios(vote)
+      this.axios(vote)
         .then(res => {
           window.console.log(res);
+          if(res.response.status==401){
+          window.location.href=phpurl;
+            }
           if(res.data.errcode==3){
             this.$router.push("/alert");
           }else if(res.data.errcode==0){
 
-            this.errmsg="感谢投票！"
+            this.errmsg=res.data.errmsg;
           }else{
-
-            this.errmsg="似乎有什么出错了哦"
+            this.errmsg=res.data.errmsg;
           }
         })
         .catch(() => {
@@ -122,6 +128,7 @@ export default {
           this.errmsg = "网络出错，请稍候再试";
         });
     }
+      }
   }
 };
 </script>

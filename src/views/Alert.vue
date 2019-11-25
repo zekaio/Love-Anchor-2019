@@ -1,9 +1,9 @@
 <template>
   <div id="alert">
     <transition id="attention2">
-        <div :v-if="alertit" id="alertbox">
+        <div id="alertbox">
             <div id="title"></div>
-            <p class="attentiontext">您已投票！<br>记得明天再来哦</p>
+            <p class="attentiontext">{{line1}}<br>{{line2}}</p>
         </div>
     </transition>
     <div id="bottom"></div>
@@ -13,8 +13,24 @@
 <script>
 export default {
   name: "alert",
+  data() {
+    return {
+      line1:"你已经投过票了",
+      line2:"记得明天再来哦"
+    }
+  },
   mounted() {
-    
+
+    if(sessionStorage.getItem("line1")!=""){
+      this.line1=sessionStorage.getItem("line1");
+    }
+    if(sessionStorage.getItem("line2")!=""){
+      this.line2=sessionStorage.getItem("line2");
+    }
+    if(sessionStorage.getItem("line1")==undefined){
+          this.line1="你已经投过票了";
+     this.line2="记得明天再来哦";
+    }
   }
 };
 </script>

@@ -25,9 +25,11 @@ export function checkLogin() {
       }
     });
   }
-  export function wxlogin() { //这个是对的
-    if (!isWeiXin) {
-      return;
+  export function wxlogin() {
+    function login(){ //这个是对的
+    if (isWeiXin()==false) {
+      alert("请使用微信浏览器")
+      return false;
     }
     fetch(getWxurl, {
       headers: {
@@ -38,8 +40,9 @@ export function checkLogin() {
         url: location.href.split("#")[0]
       })
     })
-      .then(res => res.json())
-      .then(res => {
+      .then(res => res.json());
+    }
+      login().then(res => {
         wx.config({
           appId: res.appId, // 和获取Ticke的必须一样------必填，公众号的唯一标识
           timestamp: res.timestamp,
@@ -51,18 +54,18 @@ export function checkLogin() {
         wx.ready(function() {
           //alert(window.location.href.split('#')[0]);
           wx.updateTimelineShareData({
-            title: "爱上你主播：爱上你的十二时辰", // 分享标题
+            title: "爱上你主播：投票现场", // 分享标题
             link: shareurl,
             imgUrl: shareimg_url,
             success: function() {},
             cancel: function() {
-              this.$message("取消了分享~").catch(() => {});
+              alert("取消了分享~")
             }
           });
         });
         //分享给朋友
         wx.updateAppMessageShareData({
-          title: "爱上你主播：爱上你的十二时辰",
+          title: "爱上你主播：投票现场",
           desc: "", // 分享描述
           link: shareurl,
           imgUrl: shareimg_url,
@@ -71,7 +74,7 @@ export function checkLogin() {
           },
           cancel: function() {
             // 用户取消分享后执行的回调函数
-            this.$message("取消了分享~").catch(() => {});
+            alert("取消了分享~")
           }
         });
         wx.error(function() {
@@ -81,8 +84,8 @@ export function checkLogin() {
           }).catch(() => {});
           //点击重试 再重新请求一次  取消就消失弹框
         });
-  
         //处理验证成功的信息
-      });
-  }
+      })
+    }
+  
     
