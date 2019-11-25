@@ -58,13 +58,13 @@ export default {
         this.test = Object.values(res.data);
         sessionStorage.setItem("line1", "");
         sessionStorage.setItem("line2", "");
-        if (res.response.status == 401) {
-          window.location.href = phpurl;
-        }
+        // if (res.response.status == 401) {
+        //   window.location.href = phpurl;
+        // }
       })
-      .catch(error => {
+      .catch(function (error)  {
         window.console.log(error);
-        if (error.response.status == 401) {
+        if (error.response.status === 401) {
           window.location.href = phpurl;
           return;
         }
