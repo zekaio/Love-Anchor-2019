@@ -77,8 +77,13 @@ export default {
   watch: {
     Player: {
       handler(newName, oldName) {
+        // if(newName === oldName){
+        //  
+        // }
         document.querySelector("#audio" + oldName).pause();
-        // document.querySelector("#audio" + newName).play();
+                   document.querySelector("#audio" + oldName).currentTime = 0;
+
+        document.querySelector("#audio" + newName).play();
       },
       immediate: true
     },

@@ -114,21 +114,21 @@ export default {
       // if (this.Player != this.info.index && this.Player != 0) {
       //   document.querySelector("#audio" + this.Player).pause();
       // } else if (this.Player == 0 || this.Player == this.info.index) {
-        var audio = document.querySelector("#audio" + this.Player);
-        switch (this.ifPlay) {
-          case false:
-            // this.audiobtn="playbtn_active";
-            audio.play();
-            this.ifPlay = true;
+        // var audio = document.querySelector("#audio" + this.Player);
+        // switch (this.ifPlay) {
+        //   case false:
+        //     // this.audiobtn="playbtn_active";
+        //     audio.play();
+        //     this.ifPlay = true;
 
-            break;
-          case true:
-            // this.audiobtn="playbtn";
-            audio.pause();
-            audio.currentTime = 0;
-            this.ifPlay = false;
-            break;
-        }
+        //     break;
+        //   case true:
+        //     // this.audiobtn="playbtn";
+        //     audio.pause();
+        //     audio.currentTime = 0;
+        //     this.ifPlay = false;
+        //     break;
+        // }
         //   if(this.info.index==this.ifCheck){
         //   this.audiobtn="playbtn_active";
         //   return;
