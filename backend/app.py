@@ -117,7 +117,7 @@ def vote(id):
 			return jsonify({
 				'errcode':3,
 				'errmsg':config.errmsg['day_limit']
-			}),400
+			})
 		
 	luastr = """
 		if redis.call('exists',KEYS[1]) == 1 then
@@ -141,12 +141,12 @@ def vote(id):
 			return jsonify({
 				'errcode': 1,
 				'errmsg': config.errmsg['insert_err']
-			}), 400
+			})
 	else:
 		return jsonify({
 			'errcode':2,
 			'errmsg':config.errmsg['min_limit']
-		}), 400
+		})
 
 
 if __name__ == '__main__':
