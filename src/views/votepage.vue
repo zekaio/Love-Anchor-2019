@@ -118,7 +118,7 @@ export default {
             this.errmsg = res.data.errmsg;
           }
         });
-        // .catch((res) => {
+        // .catch(() => {
         //   this.ifClick = false;
         //   this.errmsg = "网络出错，请稍候再试";
         // });

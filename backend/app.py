@@ -85,6 +85,11 @@ def getinfo():
 
 @app.route('/vote/<id>', methods=['POST'])
 def vote(id):
+	if id < 1 or id > 12:
+		return jsonify({
+			'errcode':5,
+			'errmsg':'选手序号不在范围内！'
+		})
 	now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
 	if now > config.end_time:
 		return jsonify({
