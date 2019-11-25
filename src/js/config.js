@@ -10,7 +10,7 @@ export const loginurl =  `${baseUrl}/setuserid/`+id+'';
 export const logouturl = `${baseUrl}/clearuserid`;
 
 export const shareurl = "https://hemc.100steps.net/2019/anchor-vote";
-export const shareimg_url = "https://hemc.100steps.net/2019/anchor/poster/recruit.jpg";
+export const shareimg_url = "https://hemc.100steps.net/2019/anchor-vote/img/shareimg.jpg"
 
 export const phpurl =
   "https://hemc.100steps.net/2018/fireman/auth.php?redirect=" +
