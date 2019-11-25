@@ -107,24 +107,21 @@ export default {
           ],
           url: posturl + this.ifCheck
         };
-        this.axios(vote)
-          .then(res => {
-            window.console.log(res);
-            if (res.response.status == 401) {
-              window.location.href = phpurl;
-            }
-            if (res.data.errcode == 3) {
-              this.$router.push("/alert");
-            } else if (res.data.errcode == 0) {
-              this.errmsg = res.data.errmsg;
-            } else {
-              this.errmsg = res.data.errmsg;
-            }
-          })
-          .catch(() => {
-            this.ifClick = false;
-            this.errmsg = "网络出错，请稍候再试";
-          });
+        this.axios(vote).then(res => {
+          window.console.log(res);
+          if (res.response.status == 401) {
+            window.location.href = phpurl;
+          }
+          if (res.data.errcode == 3) {
+            this.$router.push("/alert");
+          } else {
+            this.errmsg = res.data.errmsg;
+          }
+        });
+        // .catch((res) => {
+        //   this.ifClick = false;
+        //   this.errmsg = "网络出错，请稍候再试";
+        // });
       }
     }
   }
