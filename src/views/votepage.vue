@@ -111,27 +111,29 @@ export default {
         this.axios(vote)
           .then(res => {
             window.console.log(res);
-            if (res.status===401) {
-              window.location.href = phpurl;
-            }
+            // if (res.status===401) {
+            //   window.location.href = phpurl;
+            // }
             if (res.data.errcode == 3) {
               this.$router.push("/alert");
             } else {
               this.errmsg = res.data.errmsg;
             }
           })
-          // .catch(function(error) {
-          //   if (error.response) {
-          //     // 服务器返回正常的异常对象
-          //     console.log(error.response.data);
-          //     console.log(error.response.status);
-          //     this.errmsg=error.response.data
-          //   } else {
-          //     // 服务器发生未处理的异常
-          //     this.errmsg=error.message;
-          //   }
-          //   console.log(error.config);
-          // });
+          .catch(function(error) {
+            if (error.response) {
+              // 服务器返回正常的异常对象
+              console.log(error.response.data);
+              if(error.response.status===401){
+              window.location.href = phpurl;
+              };
+              this.errmsg=error.response.data
+            } else {
+              // 服务器发生未处理的异常
+              this.errmsg=error.message;
+            }
+            console.log(error.config);
+          });
       }
     }
   }
