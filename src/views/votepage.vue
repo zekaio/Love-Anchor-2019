@@ -74,15 +74,19 @@ export default {
       });
   },
   computed: {},
+  watch: {
+    isCheck:function () {
+      this.errmsg="你选择的是第"+this.ifCheck+"号选手";
+    }
+  },
   methods: {
     choose(value) {
       this.ifCheck = value;
       this.Player = value;
       //    for(var i=1;i<=document.getElementsByTagName('audio').length+1;i++){
       //document.querySelector("#audio" + i).pause();
-      //}
-      this.ifClick = false;
-      this.errmsg="你选择的是第"+this.ifCheck+"号选手";
+      //
+      this.ifClick=false;
     },
     submit() {
       this.errmsg = "";
@@ -117,6 +121,7 @@ export default {
             if (res.data.errcode == 3) {
               this.$router.push("/alert");
             }else if(res.data.errcode == 0){
+              this.ifClick=true;
               this.errmsg = "感谢投票！"
             } 
             else {

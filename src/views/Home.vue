@@ -42,8 +42,9 @@ export default {
   z-index: 10;
     font-size: 5vw;
     font-weight: 380;
-    font-family: "STYuanti";
+    font-family: "YouYuan";
     color: rgb(60, 13, 4);
+    /* color: white; */
     margin-bottom: 15vw;
     line-height: 0.354;
 }

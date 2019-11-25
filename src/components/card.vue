@@ -96,7 +96,8 @@ export default {
     watch: {
     Player:function () {
         document.querySelector("#audio" + this.Player).pause();
-    }
+    },
+
   },
   methods: {
     change() {
