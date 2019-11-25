@@ -21,7 +21,7 @@
 </template>
 <script>
 import card from "../components/card";
-import { posturl,  show ,phpurl} from "../js/config"; //show,login,getinfo
+import { posturl, show, phpurl } from "../js/config"; //show,login,getinfo
 // import axios from "axios";
 
 // fetch(getinfo, {
@@ -56,23 +56,22 @@ export default {
     this.axios(show)
       .then(res => {
         this.test = Object.values(res.data);
-        sessionStorage.setItem("line1","");
-            sessionStorage.setItem("line2","");
-            if(res.response.status==401){
-          window.location.href=phpurl;
-            }
+        sessionStorage.setItem("line1", "");
+        sessionStorage.setItem("line2", "");
+        if (res.response.status == 401) {
+          window.location.href = phpurl;
+        }
       })
       .catch(error => {
         window.console.log(error);
-        // if(error.response.status==401){
-        //   window.location.href=phpurl;
-        //   return;
-        // }
-            sessionStorage.setItem("line2","似乎网络出错了");
-            sessionStorage.setItem("line1","请稍候再试");
+        if (error.response.status == 401) {
+          window.location.href = phpurl;
+          return;
+        }
+        sessionStorage.setItem("line2", "似乎网络出错了");
+        sessionStorage.setItem("line1", "请稍候再试");
         this.$router.push("/alert");
       });
-
   },
   computed: {},
   methods: {
@@ -82,58 +81,57 @@ export default {
       //    for(var i=1;i<=document.getElementsByTagName('audio').length+1;i++){
       //document.querySelector("#audio" + i).pause();
       //}
-      this.ifClick=false;
+      this.ifClick = false;
     },
     submit() {
       this.errmsg = "";
-      if(this.ifCheck==0){
-        this.errmsg = "请选择选手！" ;
+      if (this.ifCheck == 0) {
+        this.errmsg = "请选择选手！";
         return;
       }
-      if(this.ifClick==true){
-        this.errmsg = "点太快啦！"
-          return;
+      if (this.ifClick == true) {
+        this.errmsg = "点太快啦！";
+        return;
       }
-      this.ifClick=true;
-      if(this.ifCheck!=0){
-      const vote = {
-        //提交索引
-        method: "POST",
-        data: this.ifCheck,
-        transformRequest: [
-          function(data) {
-            data = JSON.stringify(data);
-            return data;
-          }
-        ],
-        url: posturl+this.ifCheck
-      };
-      this.axios(vote)
-        .then(res => {
-          window.console.log(res);
-          if(res.response.status==401){
-          window.location.href=phpurl;
+      this.ifClick = true;
+      if (this.ifCheck != 0) {
+        const vote = {
+          //提交索引
+          method: "POST",
+          data: this.ifCheck,
+          transformRequest: [
+            function(data) {
+              data = JSON.stringify(data);
+              return data;
             }
-          if(res.data.errcode==3){
-            this.$router.push("/alert");
-          }else if(res.data.errcode==0){
-
-            this.errmsg=res.data.errmsg;
-          }else{
-            this.errmsg=res.data.errmsg;
-          }
-        })
-        .catch(() => {
-          this.ifClick=false;
-          this.errmsg = "网络出错，请稍候再试";
-        });
-    }
+          ],
+          url: posturl + this.ifCheck
+        };
+        this.axios(vote)
+          .then(res => {
+            window.console.log(res);
+            if (res.response.status == 401) {
+              window.location.href = phpurl;
+            }
+            if (res.data.errcode == 3) {
+              this.$router.push("/alert");
+            } else if (res.data.errcode == 0) {
+              this.errmsg = res.data.errmsg;
+            } else {
+              this.errmsg = res.data.errmsg;
+            }
+          })
+          .catch(() => {
+            this.ifClick = false;
+            this.errmsg = "网络出错，请稍候再试";
+          });
       }
+    }
   }
 };
 </script>
 <style>
-#votepage{
+#votepage {
   padding-top: 10%;
 }
 #cardcontain {
