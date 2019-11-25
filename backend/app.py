@@ -61,7 +61,7 @@ def page_not_found(error):
 
 @app.route('/info', methods=['get'])
 def getinfo():
-	user_id = checkWechatLogin()
+	checkWechatLogin()
 	keys = ['index', 'name', 'text', 'iconsrc', 'audiosrc']
 	anchors = []
 
@@ -86,15 +86,15 @@ def getinfo():
 
 @app.route('/vote/<id>', methods=['POST'])
 def vote(id):
-	if int(id) < 1 or int(id) > 12:
+	if int(id) not in range(1, 13):
 		return jsonify({
-			'errcode':5,
-			'errmsg':'选手序号不在范围内！'
+			'errcode':6,
+			'errmsg':config.errmsg['index_err']
 		})
 	now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
 	if now > config.end_time:
 		return jsonify({
-			'errcode':4,
+			'errcode':5,
 			'errmsg':config.errmsg['end']
 		})
 	if now < config.start_time:
@@ -136,7 +136,10 @@ def vote(id):
 		p = (session['user_id'], id)
 		db.execute("insert into votes (user_id,anchor_id) values (%s,%s)", p)
 		if db.rowcount:
-			return jsonify({'errcode': 0, 'errmsg': ''}),200
+			return jsonify({
+				'errcode': 0,
+				'errmsg': config.errmsg['success']
+			}),200
 		else:
 			return jsonify({
 				'errcode': 1,
