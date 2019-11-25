@@ -4,9 +4,9 @@
     <div
       class="icon-container"
       :id="'box'+info.index"
-      :style="'backgroundImage:url(' +'http://'+ info.iconsrc + ')'"
+      :style="'backgroundImage:url('+ info.iconsrc + ')'"
     >
-      <audio :id="'audio'+info.index" :src=" 'http://'+info.audiosrc" controlslist="nodownload"></audio>
+      <audio :id="'audio'+info.index" :src="info.audiosrc" controlslist="nodownload"></audio>
     </div>
     <div class="info">
       <h2 class="name">{{info.name}}</h2>
@@ -19,14 +19,14 @@
         @click="control"
         value
         :ifChecked="ifChecked"
-      /><!---+realplay--!-->
+      />
+      <!---+realplay--!-->
 
       <div class="piao">{{info.number}}票</div>
       <!-- <div class="button_active" v-show="btnclass==false"  :id="'btn'+info.index" :ref="'btn'+info.index"  ></div> -->
       <p class="intro">{{info.text}}</p>
       <div :class="btnname" :id="'btn'+info.index" :ref="'btn'+info.index"></div>
       <!-- :style="'backgroundImage:url(' + btnsrc + ')'" v-show="btnclass==true" -->
-      
     </div>
   </div>
 </template>
@@ -43,7 +43,7 @@ export default {
     audiosrc: String,
     ifCheck: Number,
     ifChecked: Boolean,
-    Player:  Number,
+    Player: Number
   },
   data() {
     return {
@@ -80,8 +80,8 @@ export default {
     //   }
     // },
     audiobtn: function() {
-      if (this.ifPlay==true) {
-        if(this.Player!=this.info.index){
+      if (this.ifPlay == true) {
+        if (this.Player != this.info.index) {
           return "playbtn";
         }
         return "playbtn_active";
@@ -98,61 +98,60 @@ export default {
       sessionStorage.setItem("choose", this.info.index);
       // this.$parent.$emit('goback',this.info.index);
       this.$emit("goback", this.info.index);
-            window.console.log(this.Player);
-
+      window.console.log(this.Player);
     },
     control() {
       window.console.log(this.Player);
-      if((this.Player!=this.info.index)&&(this.Player!=0)){
-       document.querySelector("#audio" + this.Player).pause();
-      }else if(this.Player==0||(this.Player==this.info.index)){
-      var audio = document.querySelector("#audio" + this.info.index);
-      switch (this.ifPlay) {
-        case false:
-          // this.audiobtn="playbtn_active";
-          audio.play();
-          this.ifPlay = true;
+      if (this.Player != this.info.index && this.Player != 0) {
+        document.querySelector("#audio" + this.Player).pause();
+      } else if (this.Player == 0 || this.Player == this.info.index) {
+        var audio = document.querySelector("#audio" + this.info.index);
+        switch (this.ifPlay) {
+          case false:
+            // this.audiobtn="playbtn_active";
+            audio.play();
+            this.ifPlay = true;
 
-          break;
-        case true:
-          // this.audiobtn="playbtn";
-          audio.pause();
-          audio.currentTime = 0;
-          this.ifPlay = false;
-          break;
+            break;
+          case true:
+            // this.audiobtn="playbtn";
+            audio.pause();
+            audio.currentTime = 0;
+            this.ifPlay = false;
+            break;
+        }
+        //   if(this.info.index==this.ifCheck){
+        //   this.audiobtn="playbtn_active";
+        //   return;
+        // }else{
+        //   this.audiobtn="playbtn"
+        // }
       }
-      //   if(this.info.index==this.ifCheck){
-      //   this.audiobtn="playbtn_active";
-      //   return;
-      // }else{
-      //   this.audiobtn="playbtn"
-      // }
-    }}
+    }
   }
 };
 </script>
 <style>
-
 .icon-container {
   background-image: url(https://cn.bing.com/th?id=OIP.SierodiUS4Sz4Is_WSARdgHaDP&pid=Api&rs=1);
   height: 25vw;
   width: 25vw;
-      background-size: 250% !important;
-    background-position-x: center;
-    background-position-y: -20px;
+  background-size: 250% !important;
+  background-position-x: center;
+  background-position-y: -20px;
   margin: 0;
   margin-top: 2.5vw;
   float: left;
   border-radius: 8px;
 }
 .icon-container:hover {
-position: absolute;
-    top: 10%;
-    background-size: 100% !important;
-    background-position-y: 0px;
-    background-repeat: no-repeat;
-    width: 90%;
-    height: 100%;
+  position: absolute;
+  top: 10%;
+  background-size: 100% !important;
+  background-position-y: 0px;
+  background-repeat: no-repeat;
+  width: 90%;
+  height: 100%;
 }
 .cardbox {
   /* width: 96%; */
@@ -258,18 +257,18 @@ position: absolute;
   color: rgb(60, 13, 4);
   font-size: 4vw !important;
 }
-.intro{
+.intro {
   text-align: left;
-    white-space: normal;
-    /* width: 36vw; */
-    height: 11vw;
-    /* margin-top: -20px; */
-    overflow: scroll;
-    margin-bottom: -12.5vw;
-    font-family: "Microsoft YaHei";
-    color: rgb(60, 13, 4);
-    font-size: 4vw !important;
-    width: 70%;
+  white-space: normal;
+  /* width: 36vw; */
+  height: 11vw;
+  /* margin-top: -20px; */
+  overflow: scroll;
+  margin-bottom: -12.5vw;
+  font-family: "Microsoft YaHei";
+  color: rgb(60, 13, 4);
+  font-size: 4vw !important;
+  width: 70%;
 }
 h1 {
   background-image: url("../assets/img/index.png");
