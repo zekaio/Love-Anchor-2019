@@ -49,10 +49,7 @@ export default {
     return {
       boxidx: 0,
       show: true,
-      // btnname:"button"
-      //  audiobtn:"playbtn",
 
-     
     };
   },
   computed: {
@@ -76,16 +73,7 @@ export default {
         return false;
       }
      },
-    // realplay: function() {
-    //   if (this.Player != 0) {
-    //     if (this.ifCheck != this.info.index) {
-    //       return "stop";
-    //     }
-    //     return "";
-    //   } else {
-    //     return "stop";
-    //   }
-    // },
+    // re
     audiobtn: function() {
       // if (this.ifPlay == true) {
       if (this.ifPlay) {
@@ -111,40 +99,10 @@ export default {
       sessionStorage.setItem("choose", this.info.index);
       // this.$parent.$emit('goback',this.info.index);
       this.$emit("goback", this.info.index);
-      window.console.log("正在播放的是" + this.Player);
     },
     control() {
-      window.console.log("正在播放的是" + this.Player);
       this.$emit("changePlayer", this.info.index);
-
-
-      // document.querySelector("#audio" + this.Player).pause();
-      // this.Player=this.ifCheck;
-      // if (this.Player != this.info.index && this.Player != 0) {
-      //   document.querySelector("#audio" + this.Player).pause();
-      // } else if (this.Player == 0 || this.Player == this.info.index) {
-      // var audio = document.querySelector("#audio" + this.Player);
-      // switch (this.ifPlay) {
-      //   case false:
-      //     // this.audiobtn="playbtn_active";
-      //     audio.play();
-      //     this.ifPlay = true;
-
-      //     break;
-      //   case true:
-      //     // this.audiobtn="playbtn";
-      //     audio.pause();
-      //     audio.currentTime = 0;
-      //     this.ifPlay = false;
-      //     break;
-      // }
-      //   if(this.info.index==this.ifCheck){
-      //   this.audiobtn="playbtn_active";
-      //   return;
-      // }else{
-      //   this.audiobtn="playbtn"
-      // }
-      // }
+      window.console.log("正在播放的是" + this.Player);
     }
   }
 };
@@ -174,12 +132,12 @@ export default {
 .icon-container:hover {
     position: absolute;
     top: 5%;
-    background-size: 100%!important;
+    background-size: 105%!important;
     background-position-y: 0;
     background-repeat: no-repeat;
     width: 90%;
-    height: 50%;
-    border-radius: 2rem;
+    height: 75%;
+    border-radius: 0.5rem;
 }
 .cardbox {
   /* width: 96%; */
