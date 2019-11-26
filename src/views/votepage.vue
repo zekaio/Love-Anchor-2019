@@ -23,18 +23,6 @@
 <script>
 import card from "../components/card";
 import { posturl, show, phpurl } from "../js/config"; //show,login,getinfo
-// import axios from "axios";
-
-// fetch(getinfo, {
-//     headers: {
-//       "Content-Type": "application/json"
-//     },
-//     method: "GET"
-//     })
-//     .then(res => {{
-//       window.console.log(res);
-//     }})
-// var data= require("@/assets/test.json");
 
 export default {
   data() {
@@ -97,7 +85,9 @@ export default {
           if(newName!=0){
           document.querySelector("#audio" + newName).play();
           }
+          if(oldName!=0){
           document.querySelector("#audio" + oldName).currentTime = 0;
+          }
         }
     },
     choose(value) {
@@ -169,6 +159,9 @@ export default {
 };
 </script>
 <style>
+h1,h2,p{
+  user-select:  none !important;
+}
 #votepage {
   /* padding-top: 10%; */
 }

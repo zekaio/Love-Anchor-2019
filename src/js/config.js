@@ -1,5 +1,5 @@
-const baseUrl = "https://hemc.100steps.net/2019/love-anchor2019-backend/api";
-// const baseUrl = "http://localhost/api/love-anchor2019/api"
+// const baseUrl = "https://hemc.100steps.net/2019/love-anchor2019-backend/api";
+const baseUrl = "http://localhost/2019/love-anchor2019-backend/api";
 export const apiurl = `${baseUrl}/`;
 // export const ajaxurl = `${baseUrl}/recruit`;
 var id=1234;

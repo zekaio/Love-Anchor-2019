@@ -35,6 +35,9 @@ export default {
 };
 </script>
 <style scoped>
+h1,h2,p{
+  user-select:  none !important;
+}
 #title{
   background-image: url('../assets/img/title.png');
       background-size: contain;

@@ -29,6 +29,9 @@ body {
   height: 100vh;
   background-image: url("./assets/img/background.jpg");
 }
+h1,h2,p{
+  user-select:  none !important;
+}
 </style>
 <script>
 window.onload = function() {
