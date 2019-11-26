@@ -90,13 +90,13 @@ export default {
         newName=0;
       }
         this.Player = newName ;
-        document.querySelector("#audio" + oldName).pause();
-        if(oldName != newName){
-          if(newName==0){
-            document.querySelector("#audio" + oldName).currentTime = 0;
-            return;
+        if(oldName!=0){
+          document.querySelector("#audio" + oldName).pause();
           }
+        if(oldName != newName){
+          if(newName!=0){
           document.querySelector("#audio" + newName).play();
+          }
           document.querySelector("#audio" + oldName).currentTime = 0;
         }
     },
