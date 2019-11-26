@@ -107,7 +107,7 @@ export default {
   }
 };
 </script>
-<style>
+<style >
 .icon-container {
   background-image: url(https://cn.bing.com/th?id=OIP.SierodiUS4Sz4Is_WSARdgHaDP&pid=Api&rs=1);
   height: 25vw;
@@ -263,7 +263,7 @@ export default {
   font-size: 4vw !important;
   width: 70%;
 }
-h1 {
+.cardbox>h1 {
   background-image: url("../assets/img/index.png");
   background-size: contain;
   background-position: center;
