@@ -38,7 +38,7 @@ export function checkLogin() {
       method: "POST",
       body: qs.stringify({
         url: location.href.split("#")[0]
-      })
+      })})
       .then(res => res.json())
       .then(res => { 
         wx.config({
@@ -84,7 +84,7 @@ export function checkLogin() {
           
         });
         //处理验证成功的信息
-      })})
+      })
     }
   
     
