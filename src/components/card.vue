@@ -172,14 +172,14 @@ export default {
 }
 
 .icon-container:hover {
-  position: absolute;
-  top: 10%;
-  background-size: 100% !important;
-  background-position-y: 0;
-  background-repeat: no-repeat;
-  width: 90%;
-  height: 62%;
-  border-radius: 2rem;
+    position: absolute;
+    top: 5%;
+    background-size: 100%!important;
+    background-position-y: 0;
+    background-repeat: no-repeat;
+    width: 90%;
+    height: 50%;
+    border-radius: 2rem;
 }
 .cardbox {
   /* width: 96%; */
@@ -210,7 +210,12 @@ export default {
   /* margin-left: 10px; */
   width: 15vw;
   height: 12vw;
-  margin-left: -15px;
+  /* margin-left: -15px; */
+    clear: both;
+    text-align: left;
+    width: 100%;
+    height: 5vw;
+    white-space: pre;
 }
 .button {
   display: block;
@@ -272,6 +277,8 @@ export default {
 }
 .info {
   margin-left: 40%;
+  overflow: hidden;
+  height: 100%;
 }
 .intro {
   text-align: left;
@@ -316,4 +323,11 @@ h2.name {
   color: rgb(60, 13, 4);
   font-weight: 400;
 }
+.cardbox>.name {
+    width: 4vw;
+    height: 6vw;
+    /* margin: 0 !important; */
+    text-align: center;
+    margin-top: 9vw !important;}
+
 </style>

@@ -64,7 +64,7 @@ export default {
         // }
       })
       .catch(function(error) {
-        window.console.log(error);
+        // window.console.log(error);
         if (error.response.status === 401) {
           window.location.href = phpurl;
           return;
@@ -81,15 +81,15 @@ export default {
       // if(this.Player!=this.ifCheck){
       // document.querySelector("#audio" + this.Player).pause();
       // }
-    }
+    },immediate:true
   },
   methods: {
     changePlayer(newName){
       var oldName = this.Player;
-      this.Player = newName ;
-      // if(newName==oldName){
-      //   this.Player=0;
-      // }
+      if(newName==oldName){
+        newName=0;
+      }
+        this.Player = newName ;
         document.querySelector("#audio" + oldName).pause();
         if(oldName != newName){
           document.querySelector("#audio" + newName).play();
@@ -107,7 +107,7 @@ export default {
     },
     submit() {
       this.errmsg = "";
-      if (this.ifCheck == 0) {
+      if ((this.ifCheck == 0)||(this.ifCheck == undefined)) {
         this.errmsg = "请选择选手！";
         return;
       }
@@ -147,7 +147,7 @@ export default {
           .catch(function(error) {
             if (error.response) {
               // 服务器返回正常的异常对象
-              window.console.log(error.response.data);
+              // window.console.log(error.response.data);
               this.errmsg = "请求中……";
               if (error.response.status === 401) {
                 window.location.href = phpurl;
