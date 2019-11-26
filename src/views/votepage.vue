@@ -202,7 +202,8 @@ p.intro::-webkit-scrollbar {
   white-space: normal;
   overflow-x: scroll;
   margin-left: 25%;
-  width: 55%;
+  width: 50%;
+  white-space:pre;
 }
 #bottom2 {
   position: absolute;
