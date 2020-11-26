@@ -1,15 +1,19 @@
 <template>
-  <div :id="'card'+info.index" class="cardbox" @click="change">
-    <h1 class="name" :id="'user'+info.index">{{info.index}}</h1>
+  <div :id="'card' + info.index" class="cardbox" @click="change">
+    <h1 class="name" :id="'user' + info.index">{{ info.index }}</h1>
     <div
       class="icon-container"
-      :id="'box'+info.index"
-      :style="'backgroundImage:url('+ info.iconsrc + ')'"
+      :id="'box' + info.index"
+      :style="'backgroundImage:url(' + info.iconsrc + ')'"
     >
-      <audio :id="'audio'+info.index" :src="info.audiosrc" controlslist="nodownload"></audio>
+      <audio
+        :id="'audio' + info.index"
+        :src="info.audiosrc"
+        controlslist="nodownload"
+      ></audio>
     </div>
     <div class="info">
-      <h2 class="name">{{info.name}}</h2>
+      <h2 class="name">{{ info.name }}</h2>
       <input
         type="submit"
         :class="audiobtn"
@@ -22,17 +26,21 @@
       />
       <!---+realplay--!-->
 
-      <div class="piao">{{info.number}}票</div>
+      <div class="piao">{{ info.number }}票</div>
       <!-- <div class="button_active" v-show="btnclass==false"  :id="'btn'+info.index" :ref="'btn'+info.index"  ></div> -->
-      <p class="intro">{{info.text}}</p>
-      <div :class="btnname" :id="'btn'+info.index" :ref="'btn'+info.index"></div>
+      <p class="intro">{{ info.text }}</p>
+      <div
+        :class="btnname"
+        :id="'btn' + info.index"
+        :ref="'btn' + info.index"
+      ></div>
       <!-- :style="'backgroundImage:url(' + btnsrc + ')'" v-show="btnclass==true" -->
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: "card",
+  name: 'card',
   props: {
     info: Object,
     index: Number,
@@ -43,47 +51,46 @@ export default {
     audiosrc: String,
     ifCheck: Number,
     ifChecked: Boolean,
-    Player: Number
+    Player: Number,
   },
   data() {
     return {
       boxidx: 0,
       show: true,
-
     };
   },
   computed: {
     boxindex: function() {
-      return "box" + this.index;
+      return 'box' + this.index;
     },
 
     btnname: function() {
       // var now=sessionStorage.getItem('choose');
       // window.console.log(1);
       if (this.info.index == this.ifCheck) {
-        return "button_active";
+        return 'button_active';
       } else {
-        return "button";
+        return 'button';
       }
     },
-     ifPlay: function(){
+    ifPlay: function() {
       if (this.Player == this.info.index) {
-        return  true;
-      }else{
+        return true;
+      } else {
         return false;
       }
-     },
+    },
     // re
     audiobtn: function() {
       // if (this.ifPlay == true) {
       if (this.ifPlay) {
         //   return "playbtn";
         // }
-        return "playbtn_active";
+        return 'playbtn_active';
       } else {
-        return "playbtn";
+        return 'playbtn';
       }
-    }
+    },
   },
   mounted() {
     // this.$refs.audio.src = this.info.audiosrc;
@@ -96,25 +103,25 @@ export default {
   },
   methods: {
     change() {
-      sessionStorage.setItem("choose", this.info.index);
+      sessionStorage.setItem('choose', this.info.index);
       // this.$parent.$emit('goback',this.info.index);
-      this.$emit("goback", this.info.index);
+      this.$emit('goback', this.info.index);
     },
     control() {
-      this.$emit("changePlayer", this.info.index);
-      window.console.log("正在播放的是" + this.Player);
-    }
-  }
+      this.$emit('changePlayer', this.info.index);
+      window.console.log('正在播放的是' + this.Player);
+    },
+  },
 };
 </script>
-<style >
+<style>
 .icon-container {
-  background-image: url(https://cn.bing.com/th?id=OIP.SierodiUS4Sz4Is_WSARdgHaDP&pid=Api&rs=1);
+  /* background-image: url(https://cn.bing.com/th?id=OIP.SierodiUS4Sz4Is_WSARdgHaDP&pid=Api&rs=1); */
   height: 25vw;
   width: 25vw;
-  background-size: 250% !important;
-  background-position-x: center;
-  background-position-y: -20px;
+  background-size: 25vw auto !important;
+  /* background-position-x: center;
+  background-position-y: -20px; */
   margin: 0;
   margin-top: 2.5vw;
   float: left;
@@ -130,14 +137,14 @@ export default {
 }
 
 .icon-container:hover {
-    position: absolute;
-    top: 5%;
-    background-size: 105%!important;
-    background-position-y: 0;
-    background-repeat: no-repeat;
-    width: 90%;
-    height: 75%;
-    border-radius: 0.5rem;
+  position: absolute;
+  top: 5%;
+  background-size: 105% !important;
+  background-position-y: 0;
+  background-repeat: no-repeat;
+  width: 90%;
+  height: 75%;
+  border-radius: 0.5rem;
 }
 .cardbox {
   /* width: 96%; */
@@ -158,7 +165,7 @@ export default {
 }
 .piao {
   /* float: left; */
-  font-family: "STYuanti";
+  font-family: 'STYuanti';
   color: rgb(60, 13, 4);
 
   font-size: 3vw;
@@ -169,11 +176,11 @@ export default {
   width: 15vw;
   height: 12vw;
   /* margin-left: -15px; */
-    clear: both;
-    text-align: left;
-    width: 100%;
-    height: 5vw;
-    white-space: pre;
+  clear: both;
+  text-align: left;
+  width: 100%;
+  height: 5vw;
+  white-space: pre;
 }
 .button {
   display: block;
@@ -182,7 +189,7 @@ export default {
   float: right;
   height: 20vw;
   margin-top: -9vw;
-  background-image: url("../assets/img/void.png");
+  background-image: url('../assets/img/void.png');
   background-size: 15px;
   background-repeat: no-repeat;
   background-position: center;
@@ -194,7 +201,7 @@ export default {
   float: right;
   height: 20vw;
   margin-top: -9vw;
-  background-image: url("../assets/img/selected.png");
+  background-image: url('../assets/img/selected.png');
   background-size: 15px;
   background-repeat: no-repeat;
   background-position: center;
@@ -206,7 +213,7 @@ export default {
   border: none;
   background: none;
   background-size: contain;
-  background-image: url("../assets/img/play.png");
+  background-image: url('../assets/img/play.png');
   background-repeat: no-repeat;
   background-position: center;
   width: 5vw;
@@ -222,7 +229,7 @@ export default {
   border: none;
   background: none;
   background-size: contain;
-  background-image: url("../assets/img/stop.png");
+  background-image: url('../assets/img/stop.png');
   background-repeat: no-repeat;
   background-position: center;
   width: 5vw;
@@ -246,7 +253,7 @@ export default {
   margin-top: 2vw;
   overflow: scroll;
   margin-bottom: 2vw;
-  font-family: "Microsoft YaHei";
+  font-family: 'Microsoft YaHei';
   color: rgb(60, 13, 4);
   font-size: 4vw !important;
 }
@@ -258,13 +265,13 @@ export default {
   /* margin-top: -20px; */
   overflow: scroll;
   margin-bottom: -12.5vw;
-  font-family: "Microsoft YaHei";
+  font-family: 'Microsoft YaHei';
   color: rgb(60, 13, 4);
   font-size: 4vw !important;
   width: 70%;
 }
-.cardbox>h1 {
-  background-image: url("../assets/img/index.png");
+.cardbox > h1 {
+  background-image: url('../assets/img/index.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -272,20 +279,20 @@ export default {
   font-weight: 300;
   padding: 2vw !important;
   margin-right: 10px !important;
-  font-family: "Microsoft YaHei";
+  font-family: 'Microsoft YaHei';
   color: rgb(60, 13, 4);
   font-size: 4vw !important;
 }
 h2.name {
-  font-family: "STYuanti";
+  font-family: 'STYuanti';
   color: rgb(60, 13, 4);
   font-weight: 400;
 }
-.cardbox>.name {
-    width: 4vw;
-    height: 6vw;
-    /* margin: 0 !important; */
-    text-align: center;
-    margin-top: 9vw !important;}
-
+.cardbox > .name {
+  width: 4vw;
+  height: 6vw;
+  /* margin: 0 !important; */
+  text-align: center;
+  margin-top: 9vw !important;
+}
 </style>

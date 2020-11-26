@@ -18,31 +18,31 @@ CORS(app, supports_credentials=True)
 r = redis.Redis(host=config.redis['host'],
                 port=config.redis['port'], db=config.redis['db'])
 conn = mysql.connector.connect(host=config.db['host'], user=config.db['user'],
-                               passwd=config.db['passwd'], database=config.db['database'], charset='utf8mb4', autocommit=1, collation='utf8mb4_unicode_ci')
+                               passwd=config.db['passwd'], database=config.db['database'], charset='utf8mb4', autocommit=True, collation='utf8mb4_unicode_ci')
 db = conn.cursor()
 
 
 def checkWechatLogin():
-    # for test
-    if not session.get('user_id'):
-        import uuid
-        try:
-            conn.ping()
-        except mysql.connector.errors.InterfaceError:
-            conn.reconnect()
-        openid = str(uuid.uuid4())
-        db.execute(
-            'select id from users where openid=%s', (openid,))
-        result = db.fetchall()
-        if not result:
-            db.execute('insert into users (openid) values (%s)', (
-                openid,))
-            db.execute(
-                'select id from users where openid=%s', (openid,))
-            result = db.fetchall()
-        session['user_id'] = result[0][0]
-    return session['user_id']
-    #
+    # # for test
+    # if not session.get('user_id'):
+    #     import uuid
+    #     try:
+    #         conn.ping()
+    #     except mysql.connector.errors.InterfaceError:
+    #         conn.reconnect()
+    #     openid = str(uuid.uuid4())
+    #     db.execute(
+    #         'select id from users where openid=%s', (openid,))
+    #     result = db.fetchall()
+    #     if not result:
+    #         db.execute('insert into users (openid) values (%s)', (
+    #             openid,))
+    #         db.execute(
+    #             'select id from users where openid=%s', (openid,))
+    #         result = db.fetchall()
+    #     session['user_id'] = result[0][0]
+    # return session['user_id']
+    # #
 
     if not session.get('user_id'):
         resp = requests.get(
@@ -58,7 +58,7 @@ def checkWechatLogin():
                     'select id from users where openid=%s', (t['openid'],))
                 result = db.fetchall()
                 if not result:
-                    db.execute('insert into users openid value (%s)', (
+                    db.execute('insert into users (openid) value (%s)', (
                         t['openid'],))
                     db.execute(
                         'select id from users where openid=%s', (t['openid'],))
@@ -103,9 +103,15 @@ def getinfo():
     return jsonify(anchors), 200
 
 
+@app.route('/session')
+def check_login():
+    checkWechatLogin()
+    return ''
+
+
 @app.route('/vote/<id>', methods=['POST'])
 def vote(id):
-    if int(id) not in range(1, 13):
+    if int(id) not in range(1, 11):
         return jsonify({
             'errcode': 6,
             'errmsg': config.errmsg['index_err']
@@ -173,4 +179,4 @@ def vote(id):
 
 
 if __name__ == '__main__':
-    app.run(port=config.app_port, debug=True)
+    app.run(port=config.app_port)

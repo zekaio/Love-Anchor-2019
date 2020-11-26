@@ -28,6 +28,7 @@ function failFunc(err) {
     switch (err.response.status) {
       // 未登录
       case 401:
+        // phpurl;
         window.location.href = phpurl;
         break;
       // 不在活动时间

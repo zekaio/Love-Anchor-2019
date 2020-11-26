@@ -7,7 +7,7 @@ USE love_anchor2020;
 CREATE TABLE IF NOT EXISTS anchors (
 	`id` int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`name`           VARCHAR(20)       NOT NULL DEFAULT '' COMMENT '选手姓名',
-    `declaration`    TEXT              NOT NULL DEFAULT '' COMMENT '选手宣言',
+    `declaration`    TEXT              NULL COMMENT '选手宣言',
     `imgsrc`         VARCHAR(255)      NOT NULL DEFAULT '' COMMENT '选手照片',
     `audiosrc`       VARCHAR(255)      NOT NULL DEFAULT '' COMMENT '选手声音'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

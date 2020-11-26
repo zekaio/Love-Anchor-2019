@@ -141,6 +141,7 @@ export default {
               this.$router.push('/alert');
             } else if (res.data.errcode == 0) {
               this.ifClick = true;
+              this.test[this.ifCheck - 1].number++;
               this.errmsg = '感谢投票！';
             } else {
               this.errmsg = res.data.errmsg;
@@ -197,11 +198,11 @@ p.intro::-webkit-scrollbar {
   outline: none;
 }
 #final-btn {
-  background-image: url('../assets/img/final.png');
+  background-image: url('../assets/img/final1.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: 9.5vw;
+  height: 12vw;
 }
 #attention {
   font-size: 3.2vw;

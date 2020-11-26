@@ -45,7 +45,7 @@ window.onload = function() {
   });
 };
 import { wxlogin } from './js/api'; //showlogin,getinfo    记得把这个开起来 上线的时候
-// import { phpurl } from './js/config';
+import { checkLogin } from './js/config';
 
 export default {
   data() {
@@ -61,7 +61,7 @@ export default {
     },
   },
   mounted() {
-    wxlogin();
+    this.axios.get(checkLogin).then(() => wxlogin());
   },
   methods: {
     prevent(event) {
