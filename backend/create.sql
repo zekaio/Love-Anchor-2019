@@ -1,8 +1,8 @@
 SET time_zone = "+08:00";
 
-CREATE DATABASE IF NOT EXISTS love_anchor2019;
+CREATE DATABASE IF NOT EXISTS love_anchor2020;
 
-USE love_anchor2019;
+USE love_anchor2020;
 
 CREATE TABLE IF NOT EXISTS anchors (
 	`id` int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -23,8 +23,6 @@ CREATE TABLE IF NOT EXISTS votes(
 CREATE TABLE IF NOT EXISTS users(
     `id`             INT AUTO_INCREMENT PRIMARY KEY        COMMENT 'ID',
     `openid`         VARCHAR(255)      NOT NULL DEFAULT '' COMMENT '微信id',
-	`nickname`       VARCHAR(50)       NOT NULL DEFAULT '' COMMENT '微信昵称',
-    `headpic`        VARCHAR(255)      NOT NULL DEFAULT '' COMMENT '微信头像url',
     `created_at` 	 timestamp 		   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` 	 timestamp         NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -8,7 +8,7 @@ pic_url = resources_url + r"pic/"
 
 audio_url = resources_url + r"audio/"
 
-wx_check_url = ""
+# wx_check_url = ""
 
 vote_number_min = 30
 
@@ -24,12 +24,12 @@ db = {
     'host': 'localhost',
     'user': 'EXAMPLE_USER',
     'passwd': 'EXAMPLE_PSW',
-    'database': 'love_anchor2019'
+    'database': 'love_anchor2020'
 }
 
-start_time = '2019-11-25 20:00:00'
+start_time = '2020-11-25 20:00:00'
 
-end_time = '2019-11-29 22:00:00'
+end_time = '2020-11-29 22:00:00'
 
 errmsg = {
     'success': '感谢您的投票~',

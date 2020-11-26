@@ -1,90 +1,129 @@
-import wx from "weixin-js-sdk"
-import axios from 'axios'
-import qs from 'qs'
-import { apiurl, phpurl,  getWxurl, shareurl, shareimg_url } from "./config";
-export function isWeiXin() {
-    var ua = window.navigator.userAgent.toLowerCase();
-  if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-  return true;
+import wx from 'weixin-js-sdk';
+import axios from 'axios';
+import { phpurl, getWxurl, link, imgUrl, title } from './config';
+
+import { Toast } from 'vant';
+
+/**
+ * axios 配置
+ */
+export const instance = axios.create({
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  withCredentials: true,
+});
+
+function succFunc(res) {
+  return Promise.resolve(res);
+}
+
+function failFunc(err) {
+  if (!err.response) {
+    Toast.fail({
+      message: '服务器无法响应，请稍后再试',
+    });
   } else {
-  return false;
+    // err.response.data
+    switch (err.response.status) {
+      // 未登录
+      case 401:
+        window.location.href = phpurl;
+        break;
+      // 不在活动时间
+      case 410:
+        Toast.fail({
+          message: err.response.data.message,
+        });
+        break;
+      // 服务器错误
+      case 500:
+        Toast.fail({
+          message: '服务器错误，请稍后再试',
+        });
+        break;
+      default:
+        return Promise.reject(err);
+    }
+  }
+  return new Promise(() => {});
+}
+
+instance.interceptors.response.use(succFunc, failFunc);
+
+instance.interceptors.request.use(
+  (config) => {
+    if (/get/i.test(config.method)) {
+      config.params = config.params || {};
+      config.params.timestamp = new Date().getTime();
+    }
+    return config;
+  },
+  (err) => {
+    return Promise.reject(err);
+  }
+);
+
+/* */
+
+export function isWeiXin() {
+  var ua = window.navigator.userAgent.toLowerCase();
+  if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+    return true;
+  } else {
+    return false;
   }
 }
-export function checkLogin() {
-    if (!isWeiXin) {
-      return false;
-    }
-  
-    var checkurl = apiurl + "checkLogin";
-    axios.get(checkurl).then(res => {
-      wxlogin();
-      if (res.data.errcode != 0 || res.data.errcode == 400) {
-        window.location.href = phpurl;
-      } else {
-        return true;
-      }
-    });
+
+export function wxlogin() {
+  // function login(){ //这个是对的
+  if (isWeiXin() == false) {
+    // alert('请使用微信浏览器');
+    return false;
   }
-  export function wxlogin() {
-    // function login(){ //这个是对的
-    if (isWeiXin()==false) {
-      alert("请使用微信浏览器")
-      return false;
-    }
-    fetch(getWxurl, {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: "POST",
-      body: qs.stringify({
-        url: location.href.split("#")[0]
-      })})
-      .then(res => res.json())
-      .then(res => { 
-        wx.config({
-          appId: res.appId, // 和获取Ticke的必须一样------必填，公众号的唯一标识
-          timestamp: res.timestamp,
-          nonceStr: res.nonceStr,
-          signature: res.signature,
-          jsApiList: ["updateTimelineShareData", "updateAppMessageShareData"],
-          debug: false
-        });
-        wx.ready(function() {
-          //alert(window.location.href.split('#')[0]);
-          wx.updateTimelineShareData({
-            title: "爱上你主播：投票现场", // 分享标题
-            link: shareurl,
-            imgUrl: shareimg_url,
-            success: function() {},
-            cancel: function() {
-              alert("取消了分享~")
-            }
-          });
-        });
-        //分享给朋友
-        wx.updateAppMessageShareData({
-          title: "爱上你主播：投票现场",
-          desc: "", // 分享描述
-          link: shareurl,
-          imgUrl: shareimg_url,
+
+  instance({
+    url: getWxurl,
+    method: 'post',
+    data: { url: window.location.href.split('#')[0] },
+  }).then((res) => {
+    wx.ready(() => {
+      wx.checkJsApi({
+        jsApiList: ['updateTimelineShareData', 'updateAppMessageShareData'],
+        success: () => {
+          console.log('接口可用');
+        },
+      });
+
+      wx.updateTimelineShareData({
+        title,
+        link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        imgUrl,
         success: function() {
-            // 用户确认分享后执行的回调函数
-          },
-          cancel: function() {
-            // 用户取消分享后执行的回调函数
-            alert("取消了分享~")
-          }
-        });
-        wx.error(function() {
-          // this.$alert("授权失败了=n=", "提示", {
-          //   confirmButtonText: "重试",
-          //   cancelButtonText: "取消"
-          // }).catch(() => {});
-          //点击重试 再重新请求一次  取消就消失弹框
-          
-        });
-        //处理验证成功的信息
-      })
-    }
-  
-    
+          console.log('success');
+          // 设置成功
+        },
+      });
+
+      wx.updateAppMessageShareData({
+        title, // 分享标题
+        desc: '', // 分享描述
+        link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        imgUrl,
+        success: function() {
+          console.log('success');
+          // 设置成功
+        },
+      });
+    });
+
+    wx.config({
+      debug: false,
+      appId: res.data.appid,
+      timestamp: res.data.timestamp,
+      nonceStr: res.data.noncestr,
+      signature: res.data.signature,
+      jsApiList: ['updateTimelineShareData', 'updateAppMessageShareData'],
+    });
+  });
+}

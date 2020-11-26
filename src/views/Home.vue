@@ -7,7 +7,7 @@
     <div id="left"></div>
     <h3 class="title">每天可以投一票哦~</h3>
     <div id="change">
-          <router-link to="/votepage" class="changepage">去投票</router-link>
+      <router-link to="/votepage" class="changepage">去投票</router-link>
     </div>
     <div id="bottom"></div>
   </div>
@@ -15,78 +15,68 @@
 
 <script>
 export default {
-  name: "home",
-  mounted() {
-    //   if (!isWeiXin()) {
-    //   this.isAbled = 1;
-    //   return;
-    // } else {
-    //   this.isAbled = 0;
-    // }
-    // checkTime();
-    // if(window.sessionStorage.getItem('TimeErr')!=""){
-    //   this.$alert(window.sessionStorage.getItem('TimeErr'),"提示").catch(()=>{});
-    // }
-  }
+  name: 'home',
 };
 </script>
 <style scoped>
-h1,h2,p{
-  user-select:  none !important;
+h1,
+h2,
+p {
+  user-select: none !important;
 }
-#title{
+#title {
   background-image: url('../assets/img/title.png');
-      background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 35vw;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 35vw;
 }
 .title {
   z-index: 10;
-    font-size: 5vw;
-    font-weight: 380;
-    font-family: "YouYuan";
-    color: rgb(60, 13, 4);
-    /* color: white; */
-    margin-bottom: 15vw;
-    line-height: 0.354;
+  font-size: 5vw;
+  font-weight: 380;
+  font-family: 'YouYuan';
+  color: rgb(60, 13, 4);
+  /* color: white; */
+  margin-bottom: 15vw;
+  line-height: 0.354;
 }
 #home {
-    padding-top: 20vw;
+  padding-top: 20vw;
 }
-#home>h1{
+#home > h1 {
   margin-top: 14vw;
 }
-#left{
+#left {
   position: absolute;
   z-index: 1;
-    background-image: url('../assets/img/left.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 15vw;
-    width: 25vw;
+  background-image: url('../assets/img/left.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 15vw;
+  width: 25vw;
 }
-#bottom{
+#bottom {
   position: absolute;
   z-index: 1;
-    background-image: url('../assets/img/bottom.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 34vw;
-    width: 25vw;
-    right: 0;
-    bottom: 0;
+  background-image: url('../assets/img/bottom.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 34vw;
+  width: 25vw;
+  right: 0;
+  bottom: 0;
 }
-#change{
-      background-image: url('../assets/img/go.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 15vw;
+#change {
+  background-image: url('../assets/img/go.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 15vw;
 }
-.changepage{
-      font-size: 10vw;
-    color: transparent;
-    text-decoration-line: none;
+.changepage {
+  font-size: 10vw;
+  color: transparent;
+  text-decoration-line: none;
 }
 </style>
