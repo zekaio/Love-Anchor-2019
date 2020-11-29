@@ -24,24 +24,24 @@ db = conn.cursor()
 
 def checkWechatLogin():
     # # for test
-    # if not session.get('user_id'):
-    #     import uuid
-    #     try:
-    #         conn.ping()
-    #     except mysql.connector.errors.InterfaceError:
-    #         conn.reconnect()
-    #     openid = str(uuid.uuid4())
-    #     db.execute(
-    #         'select id from users where openid=%s', (openid,))
-    #     result = db.fetchall()
-    #     if not result:
-    #         db.execute('insert into users (openid) values (%s)', (
-    #             openid,))
-    #         db.execute(
-    #             'select id from users where openid=%s', (openid,))
-    #         result = db.fetchall()
-    #     session['user_id'] = result[0][0]
-    # return session['user_id']
+    if not session.get('user_id'):
+        import uuid
+        try:
+            conn.ping()
+        except mysql.connector.errors.InterfaceError:
+            conn.reconnect()
+        openid = str(uuid.uuid4())
+        db.execute(
+            'select id from users where openid=%s', (openid,))
+        result = db.fetchall()
+        if not result:
+            db.execute('insert into users (openid) values (%s)', (
+                openid,))
+            db.execute(
+                'select id from users where openid=%s', (openid,))
+            result = db.fetchall()
+        session['user_id'] = result[0][0]
+    return session['user_id']
     # #
 
     if not session.get('user_id'):

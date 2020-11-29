@@ -1,5 +1,5 @@
 const baseUrl = 'https://hemc.100steps.net/2020/love-anchor2020-backend/api';
-// const baseUrl = 'http://localhost:5000';
+// const baseUrl = 'http://localhost:5000';/
 export const apiurl = `${baseUrl}/`;
 export const getinfo = `${baseUrl}/info`; //获取列表
 export const posturl = `${baseUrl}/vote/`; //提交

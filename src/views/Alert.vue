@@ -1,12 +1,17 @@
 <template>
   <div id="alert">
     <transition id="attention2">
-      <div id="alertbox">
-        <div id="title"></div>
-        <p class="attentiontext">{{ line1 }}<br />{{ line2 }}</p>
-      </div>
+      <!-- <div id="alertbox"> -->
+      <img
+        src="../assets/img/title.png"
+        alt=""
+        style="width:60vw; margin-top:10vh"
+      />
+      <!-- <div id="title"></div> -->
+      <p class="attentiontext">{{ line1 }}<br />{{ line2 }}</p>
+      <!-- </div> -->
     </transition>
-    <div id="bottom"></div>
+    <!-- <div id="bottom"></div> -->
   </div>
 </template>
 
@@ -38,6 +43,21 @@ h1,
 h2,
 p {
   user-select: none !important;
+}
+#alert {
+  background-image: url('../assets/img/bg_home.jpg');
+
+  /* zoom: 1 !important; */
+
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  text-align: center;
+  /* margin-top: 0; */
+  background-size: auto 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
 }
 #title {
   background-image: url('../assets/img/title.png');

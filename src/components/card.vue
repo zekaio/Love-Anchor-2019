@@ -150,7 +150,7 @@ export default {
   /* width: 96%; */
   height: 30vw;
   margin-bottom: 20px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 8px;
   /* margin-left: 2%; */
   padding-left: 10px;
@@ -220,9 +220,9 @@ export default {
   height: 6vw;
   float: left;
   margin-left: 2vw;
-  margin-top: 1vw;
+  /* margin-top: 1vw; */
   outline: none;
-  margin-top: 5px;
+  margin-top: 6.9px;
 }
 .playbtn_active {
   -webkit-appearance: none;

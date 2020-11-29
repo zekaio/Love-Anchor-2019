@@ -15,18 +15,7 @@ body {
   overflow: hidden;
   zoom: 1 !important;
 }
-#app {
-  zoom: 1 !important;
 
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  margin-top: 0;
-  width: 100%;
-  background-size: cover;
-  height: 100vh;
-  background-image: url('./assets/img/background.jpg');
-}
 h1,
 h2,
 p {
