@@ -216,13 +216,12 @@ export default {
   background-image: url('../assets/img/play.png');
   background-repeat: no-repeat;
   background-position: center;
-  width: 5vw;
-  height: 6vw;
+  width: 1.1rem;
+  height: 1.1rem;
   float: left;
   margin-left: 2vw;
-  /* margin-top: 1vw; */
   outline: none;
-  margin-top: 6.9px;
+  margin-top: 0.55rem;
 }
 .playbtn_active {
   -webkit-appearance: none;
@@ -232,13 +231,12 @@ export default {
   background-image: url('../assets/img/stop.png');
   background-repeat: no-repeat;
   background-position: center;
-  width: 5vw;
-  height: 6vw;
+  width: 1.1rem;
+  height: 1.1rem;
   float: left;
   margin-left: 2vw;
-  margin-top: 1vw;
   outline: none;
-  margin-top: 5px;
+  margin-top: 0.55rem;
 }
 .info {
   margin-left: 40%;

@@ -18,18 +18,17 @@
         @changePlayer="changePlayer"
         :ifCheck="ifCheck"
       >
-        <!-- :btnsrc="btnsrc"  -->
       </card>
     </div>
     <div style="margin:3vh 0;">向下滑动查看更多选手</div>
-    <div id="final-btn">
-      <input
-        type="submit"
-        class="queren"
-        id="final"
-        value=" "
+    <div style="position: relative; width: 40vw; margin: auto;">
+      <div
+        style="position: absolute;z-index: 100;left: 0;right: 0;top: 0;bottom: 0;opacity: 0;"
         @click="submit"
-        :ifClick="ifClick"
+      ></div>
+      <img
+        style="display: block; width: 100%;"
+        src="../assets/img/confirm.png"
       />
     </div>
 
@@ -41,9 +40,11 @@
 </template>
 <script>
 import card from '../components/card';
+// import I from '../components/I';
 import { posturl, show, phpurl } from '../js/config'; //show,login,getinfo
 import { Toast } from 'vant';
 import selected from '../assets/img/selected.png';
+import stop from '../assets/img/stop.png';
 
 export default {
   data() {
@@ -62,6 +63,7 @@ export default {
   },
   components: {
     card,
+    // I,
   },
   async mounted() {
     this.axios(show)
@@ -90,6 +92,8 @@ export default {
 
     let c = new Image();
     c.src = selected;
+    let s = new Image();
+    s.src = stop;
   },
   computed: {},
   watch: {
@@ -130,12 +134,12 @@ export default {
       this.ifClick = false;
     },
     submit() {
-      // this.errmsg = '';
+      this.errmsg = '';
       if (this.ifCheck == 0 || this.ifCheck == undefined) {
-        // Toast.fail({
-        //   message: '请选择选手',
-        // });
-        this.errmsg = '请选择选手！';
+        Toast.fail({
+          message: '请选择选手',
+        });
+        // this.errmsg = '请选择选手！';
         return;
       }
       if (this.ifClick == true) {
@@ -176,7 +180,8 @@ export default {
               // this.$router.push('/alert');
             } else {
               this.test[this.ifCheck - 1].number++;
-              this.errmsg = '感谢投票！';
+              Toast.success({ message: '感谢投票' });
+              // this.errmsg = '感谢投票！';
             }
             // console.log('aaa');
             this.ifClick = false;
@@ -202,7 +207,7 @@ export default {
               this.errmsg = error.message;
             }
             window.console.log(error.config);
-            this.ifClick = false;
+            this.ifClick = true;
           });
       }
     },
@@ -260,6 +265,7 @@ p.intro::-webkit-scrollbar {
   color: transparent;
   font-size: 8vw;
   outline: none;
+  height: 100%;
 }
 #final-btn {
   background-image: url('../assets/img/confirm.png');

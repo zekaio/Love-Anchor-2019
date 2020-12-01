@@ -14,7 +14,18 @@
     <div id="left"></div>
     <h3 class="title">每天可以投一票哦~</h3> -->
     <router-link to="/votepage">
-      <img src="../assets/img/start.png" style="width:40vw; margin-top: 30vh" />
+      <div
+        style="position: relative; width: 40vw; margin: auto;margin-top: 30vh"
+      >
+        <div
+          style="position: absolute;z-index: 100;left: 0;right: 0;top: 0;bottom: 0;opacity: 0;"
+        ></div>
+        <img
+          style="display: block; width: 100%;"
+          src="../assets/img/start.png"
+        />
+      </div>
+      <!-- <img src="../assets/img/start.png" style="width:40vw; margin-top: 30vh" /> -->
     </router-link>
     <!-- <div id="change">
       <router-link to="/votepage" class="changepage">去投票</router-link>

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-on:touchmove.native="prevent(e)">
+  <div id="app">
     <transition :name="transitionName" mode="out-in">
       <router-view></router-view>
     </transition>

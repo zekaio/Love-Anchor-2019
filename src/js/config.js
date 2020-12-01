@@ -1,13 +1,12 @@
 const baseUrl = 'https://hemc.100steps.net/2020/love-anchor2020-backend/api';
-// const baseUrl = 'http://localhost:5000';/
+// const baseUrl = 'http://localhost:5000';
 export const apiurl = `${baseUrl}/`;
 export const getinfo = `${baseUrl}/info`; //获取列表
 export const posturl = `${baseUrl}/vote/`; //提交
 export const checkLogin = `${baseUrl}/session`; // 检验是否登录
 
 export const link = 'https://hemc.100steps.net/2020/anchor-vote';
-export const imgUrl =
-  'https://hemc.100steps.net/2020/anchor-vote/img/shareimg.jpg';
+export const imgUrl = 'https://hemc.100steps.net/2020/anchor-vote/shareimg.jpg';
 export const title = '爱上你主播·投票';
 
 export const wechatBaseURL = 'https://hemc.100steps.net/2020/wechat';
